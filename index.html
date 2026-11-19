@@ -17,16 +17,17 @@
       background-color: #e5e5e5;
       display: flex;
       justify-content: center;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
     }
 
     .app-container {
       width: 100%;
       max-width: 430px;
       background-color: #ffffff;
-      min-height: 100vh;
+      height: 100vh;
       position: relative;
-      overflow-x: hidden;
+      overflow: hidden;
       box-shadow: 0 0 20px rgba(0,0,0,0.15);
     }
 
@@ -34,17 +35,18 @@
     .page-view {
       display: none;
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;
       background: #ffffff;
+      overflow-y: auto;
     }
 
     .slide-in-right {
-      display: block !important;
+      display: flex !important;
       animation: slideInRight 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .slide-in-left {
-      display: block !important;
+      display: flex !important;
       animation: slideInLeft 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
@@ -70,10 +72,14 @@
       }
     }
 
-    /* ================= HALAMAN 1: DAFTAR PROYEK ================= */
+    /* ================= HALAMAN 1: DAFTAR PROYEK (FIXED NAV + SCROLLABLE LIST) ================= */
     #page-home {
-      padding: 20px 18px 185px 18px;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      padding: 18px 18px 0 18px;
+      position: relative;
     }
 
     .top-logo {
@@ -83,6 +89,7 @@
       margin-bottom: 8px;
       font-weight: 800;
       line-height: 1;
+      flex-shrink: 0;
     }
     .logo-n {
       font-size: 46px;
@@ -104,6 +111,23 @@
       letter-spacing: -2px;
     }
 
+    /* Hanya bagian proyek yang bisa di-scroll */
+    #project-list-container {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+      padding-bottom: 155px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #project-list-container::-webkit-scrollbar {
+      width: 5px;
+    }
+    #project-list-container::-webkit-scrollbar-thumb {
+      background: rgba(217, 4, 22, 0.35);
+      border-radius: 10px;
+    }
+
     .project-item {
       margin-bottom: 22px;
       position: relative;
@@ -113,7 +137,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 10px;
     }
 
@@ -123,15 +147,19 @@
       background: linear-gradient(90deg, #e61923, #ff3b3b);
       color: white;
       height: 36px;
-      padding: 0 26px 0 46px;
+      padding: 0 22px 0 46px;
       border-radius: 20px;
       position: relative;
       font-family: 'Fredoka', sans-serif;
-      font-size: 16px;
-      letter-spacing: 0.5px;
+      font-size: 15px;
+      letter-spacing: 0.4px;
       margin-left: 10px;
       box-shadow: 0 3px 6px rgba(217, 4, 22, 0.25);
       cursor: pointer;
+      max-width: 215px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .pill-header::before {
       content: '';
@@ -144,14 +172,37 @@
       border-radius: 50%;
     }
 
+    .project-action-btns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .btn-rename-project {
+      background-color: #fff8e6;
+      color: #b85d00;
+      border: 1.5px solid #e07a00;
+      border-radius: 14px;
+      padding: 4px 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 11.5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-rename-project:hover {
+      background-color: #e07a00;
+      color: #ffffff;
+    }
+
     .btn-delete-project {
       background-color: #fff0f0;
       color: #d90416;
       border: 1.5px solid #d90416;
       border-radius: 14px;
-      padding: 4px 12px;
+      padding: 4px 10px;
       font-family: 'Fredoka', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       cursor: pointer;
       transition: all 0.15s ease;
     }
@@ -255,22 +306,22 @@
       margin-top: 10px;
     }
 
-    /* Footer Merah Miring (Halaman Home) */
+    /* Footer Merah Miring Tetap di Tempat (Tidak Ikut Scroll) */
     .bottom-nav-wrapper {
-      position: fixed;
+      position: absolute;
       bottom: 0;
+      left: 0;
       width: 100%;
-      max-width: 430px;
-      height: 165px;
+      height: 155px;
       pointer-events: none;
-      z-index: 10;
+      z-index: 15;
     }
     .red-slant-bg {
       position: absolute;
       bottom: -45px;
       left: -20px;
       right: -20px;
-      height: 175px;
+      height: 170px;
       background-color: #d90416;
       transform: rotate(13deg);
       pointer-events: auto;
@@ -278,7 +329,7 @@
     }
     .btn-menu {
       position: absolute;
-      bottom: 102px;
+      bottom: 98px;
       left: 18px;
       background: #fff;
       color: #d90416;
@@ -293,7 +344,7 @@
     }
     .btn-buat {
       position: absolute;
-      bottom: 32px;
+      bottom: 28px;
       left: 58px;
       background: #fff;
       color: #d90416;
@@ -330,7 +381,7 @@
       margin-bottom: 10px;
     }
 
-    /* ================= POPUP VISUAL (HAPUS & KEMBALI) DENGAN BACKGROUND BLUR ================= */
+    /* ================= POPUP VISUAL DENGAN BACKGROUND BLUR ================= */
     .custom-modal-overlay {
       display: none;
       position: fixed;
@@ -385,6 +436,47 @@
       border-radius: 50%;
     }
 
+    /* Visual Rename sesuai gambar: kapsul merah kosong dengan lingkaran merah di kiri & tombol Yes */
+    .rename-input-pill {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(90deg, #ff262e, #ff4248);
+      height: 48px;
+      width: 270px;
+      padding: 0 18px 0 46px;
+      border-radius: 0 24px 24px 0;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(217, 4, 22, 0.25);
+      margin-left: 14px;
+    }
+
+    .rename-input-pill::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: -7px;
+      width: 62px;
+      height: 62px;
+      background-color: #d90416;
+      border-radius: 50%;
+    }
+
+    .rename-input-field {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 17px;
+      outline: none;
+      position: relative;
+      z-index: 2;
+    }
+    .rename-input-field::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
+
     .modal-actions-row {
       display: flex;
       align-items: center;
@@ -425,8 +517,9 @@
       cursor: pointer;
     }
 
-    /* ================= HALAMAN 2: SETTING (BERSIH TANPA FOTO FOOTER) ================= */
+    /* ================= HALAMAN 2: SETTING ================= */
     #page-setting {
+      flex-direction: column;
       padding: 20px 0 40px 0;
     }
 
@@ -566,7 +659,8 @@
 
     /* ================= HALAMAN 3: FORM NOTA ================= */
     #page-nota {
-      padding: 16px 14px 32px 14px;
+      flex-direction: column;
+      padding: 16px 14px 36px 14px;
     }
 
     .nota-top-bar {
@@ -909,9 +1003,13 @@
     .btn-print { background-color: #d90416; color: #fff; }
 
     @media print {
-      body { background: #fff; }
+      body, .app-container, .page-view {
+        height: auto !important;
+        overflow: visible !important;
+        background: #fff !important;
+      }
       .app-container { box-shadow: none; max-width: 100%; }
-      .action-bar, .nota-mode-badge, .nota-top-bar, .custom-modal-overlay { display: none !important; }
+      .action-bar, .nota-mode-badge, .nota-top-bar, .custom-modal-overlay, .bottom-nav-wrapper { display: none !important; }
       input { border-bottom: none !important; }
     }
   </style>
@@ -921,14 +1019,16 @@
   <div class="app-container">
 
     <!-- ================= HALAMAN 1: DAFTAR PROYEK ================= -->
-    <div id="page-home" class="page-view" style="display:block;">
+    <div id="page-home" class="page-view" style="display:flex;">
       <div class="top-logo">
         <span class="logo-n">N</span><span class="logo-sub">ota</span>
         <span class="logo-h">H</span><span class="logo-sub">onda</span>
       </div>
 
+      <!-- Hanya kontainer ini yang bisa di-scroll -->
       <div id="project-list-container"></div>
 
+      <!-- Navigasi Bawah Tetap di Tempat -->
       <div class="bottom-nav-wrapper">
         <div class="red-slant-bg"></div>
         <button class="btn-menu" onclick="bukaHome('left')">menu</button>
@@ -950,7 +1050,20 @@
       </div>
     </div>
 
-    <!-- ================= POPUP 2: KONFIRMASI KEMBALI (KLIK 2X MODE TULIS) ================= -->
+    <!-- ================= POPUP 2: RENAME PROYEK (VISUAL BARU) ================= -->
+    <div id="rename-modal-overlay" class="custom-modal-overlay" onclick="tutupModalRename()">
+      <div class="custom-modal-box" onclick="event.stopPropagation()">
+        <div class="rename-input-pill">
+          <input type="text" id="rename-input-field" class="rename-input-field" placeholder="Nama proyek..." onkeydown="if(event.key==='Enter') konfirmasiRenameProyek()">
+        </div>
+        <div class="modal-actions-row">
+          <button class="btn-yes-pill" onclick="konfirmasiRenameProyek()">Yes</button>
+          <button class="btn-cancel-pill" onclick="tutupModalRename()">Batal</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= POPUP 3: KONFIRMASI KEMBALI (KLIK 2X MODE TULIS) ================= -->
     <div id="back-modal-overlay" class="custom-modal-overlay" onclick="tutupModalKembali()">
       <div class="custom-modal-box" onclick="event.stopPropagation()">
         <div class="modal-banner-pill">klik yes untuk kembali</div>
@@ -1144,6 +1257,7 @@
     let proyekList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     let proyekAktifId = null;
     let targetHapusId = null;
+    let targetRenameId = null;
     let currentMode = localStorage.getItem(MODE_KEY) || 'ketik';
 
     renderDaftarProyek();
@@ -1158,7 +1272,7 @@
       const target = document.getElementById(pageId);
       void target.offsetWidth;
       target.classList.add(arah === 'left' ? 'slide-in-left' : 'slide-in-right');
-      window.scrollTo(0, 0);
+      target.scrollTop = 0;
     }
 
     function bukaHome(arah = 'left') {
@@ -1221,6 +1335,41 @@
       bukaNotaById(baru.id, 'right');
     }
 
+    // Modal Rename Proyek
+    function bukaModalRename(id, event) {
+      event.stopPropagation();
+      const proyek = proyekList.find(p => p.id === id);
+      if (!proyek) return;
+
+      targetRenameId = id;
+      const input = document.getElementById('rename-input-field');
+      input.value = proyek.judul || '';
+      document.getElementById('rename-modal-overlay').style.display = 'flex';
+      setTimeout(() => {
+        input.focus();
+        input.select();
+      }, 60);
+    }
+
+    function tutupModalRename() {
+      targetRenameId = null;
+      document.getElementById('rename-modal-overlay').style.display = 'none';
+    }
+
+    function konfirmasiRenameProyek() {
+      if (!targetRenameId) return;
+      const proyek = proyekList.find(p => p.id === targetRenameId);
+      const namaBaru = document.getElementById('rename-input-field').value.trim();
+
+      if (proyek && namaBaru) {
+        proyek.judul = namaBaru;
+        simpanKeStorage();
+        renderDaftarProyek();
+      }
+      tutupModalRename();
+    }
+
+    // Modal Hapus Proyek
     function hapusProyek(id, event) {
       event.stopPropagation();
       targetHapusId = id;
@@ -1243,6 +1392,7 @@
       tutupModalHapus();
     }
 
+    // Modal Kembali (muncul saat klik/ketuk 2 kali di mode tulis)
     function bukaModalKembali() {
       document.getElementById('back-modal-overlay').style.display = 'flex';
     }
@@ -1278,7 +1428,10 @@
           <div class="project-item">
             <div class="project-header-row">
               <div class="pill-header" onclick="bukaNotaById('${p.id}', 'right')">${escapeHtml(p.judul)}</div>
-              <button class="btn-delete-project" onclick="hapusProyek('${p.id}', event)">Hapus</button>
+              <div class="project-action-btns">
+                <button class="btn-rename-project" onclick="bukaModalRename('${p.id}', event)">Rename</button>
+                <button class="btn-delete-project" onclick="hapusProyek('${p.id}', event)">Hapus</button>
+              </div>
             </div>
             <div class="mini-preview" onclick="bukaNotaById('${p.id}', 'right')">
               <div class="mini-left">
