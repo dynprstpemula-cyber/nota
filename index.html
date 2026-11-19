@@ -311,6 +311,7 @@
       padding-left: 25px;
       position: relative;
       overflow: hidden;
+      max-height: 112px;
       cursor: pointer;
     }
     .mini-preview::after {
@@ -753,7 +754,7 @@
     /* ================= HALAMAN 3: FORM NOTA ================= */
     #page-nota {
       flex-direction: column;
-      padding: 16px 14px 36px 14px;
+      padding: 16px 14px 40px 14px;
     }
 
     .nota-top-bar {
@@ -1281,9 +1282,49 @@
 
               <div class="no-cell">5</div>
               <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">6</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">7</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">8</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">9</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">10</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
             </div>
 
             <div class="right-white-box" id="calc-rows">
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
               <div class="right-input-row">
                 <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
                 <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
@@ -1357,6 +1398,7 @@
   <script>
     const STORAGE_KEY = 'honda_nota_proyek_v1';
     const MODE_KEY = 'honda_nota_mode_v1';
+    const JUMLAH_BARIS = 10;
 
     let proyekList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     let proyekAktifId = null;
@@ -1364,7 +1406,6 @@
     let targetRenameId = null;
     let currentMode = localStorage.getItem(MODE_KEY) || 'ketik';
 
-    // Animasi titik pada teks banner ("MENGGANTI MESIN....")
     const dotFrames = ['.', '..', '...', '....'];
     let dotIdx = 0;
     setInterval(() => {
@@ -1440,6 +1481,10 @@
       }
     }
 
+    function buatBarisKosong(jumlah = JUMLAH_BARIS) {
+      return Array.from({ length: jumlah }, () => ({ uraian: '', qty: '', harga: '' }));
+    }
+
     function buatProyekBaru() {
       const nomorUrut = proyekList.length + 1;
       const baru = {
@@ -1448,13 +1493,7 @@
         nama: '',
         nopol: '',
         motor: '',
-        baris: [
-          { uraian: '', qty: '', harga: '' },
-          { uraian: '', qty: '', harga: '' },
-          { uraian: '', qty: '', harga: '' },
-          { uraian: '', qty: '', harga: '' },
-          { uraian: '', qty: '', harga: '' }
-        ],
+        baris: buatBarisKosong(JUMLAH_BARIS),
         diskon: '',
         sigPelanggan: '',
         sigKasir: '',
@@ -1551,7 +1590,12 @@
       }
 
       container.innerHTML = proyekList.map(p => {
-        const uraianPreview = p.baris.map(b => b.uraian || '');
+        const barisData = Array.isArray(p.baris) ? p.baris : [];
+        const previewRows = Array.from({ length: JUMLAH_BARIS }, (_, idx) => {
+          const uraian = escapeHtml((barisData[idx] && barisData[idx].uraian) || '');
+          return `<div>${idx + 1}</div><div>${uraian}</div>`;
+        }).join('');
+
         return `
           <div class="project-item">
             <div class="project-header-row">
@@ -1572,11 +1616,7 @@
               </div>
               <div class="mini-table">
                 <div>NO</div><div>Uraian</div>
-                <div>1</div><div>${escapeHtml(uraianPreview[0])}</div>
-                <div>2</div><div>${escapeHtml(uraianPreview[1])}</div>
-                <div>3</div><div>${escapeHtml(uraianPreview[2])}</div>
-                <div>4</div><div>${escapeHtml(uraianPreview[3])}</div>
-                <div>5</div><div>${escapeHtml(uraianPreview[4])}</div>
+                ${previewRows}
               </div>
             </div>
           </div>
@@ -1610,7 +1650,7 @@
       const qtyEls = document.querySelectorAll('.qty-input');
       const hargaEls = document.querySelectorAll('.harga-input');
 
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < JUMLAH_BARIS; i++) {
         const b = (proyek.baris && proyek.baris[i]) ? proyek.baris[i] : { uraian: '', qty: '', harga: '' };
         uraianEls[i].value = b.uraian || '';
         qtyEls[i].value = b.qty || '';
@@ -1618,7 +1658,9 @@
       }
 
       hitungTotal(false);
-      terapkanModeKeNota(proyek.drawingData || '');
+      setTimeout(() => {
+        terapkanModeKeNota(proyek.drawingData || '');
+      }, 40);
     }
 
     function simpanProyekAktif() {
@@ -1638,11 +1680,11 @@
       const hargaEls = document.querySelectorAll('.harga-input');
 
       proyek.baris = [];
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < JUMLAH_BARIS; i++) {
         proyek.baris.push({
-          uraian: uraianEls[i].value,
-          qty: qtyEls[i].value,
-          harga: hargaEls[i].value
+          uraian: uraianEls[i] ? uraianEls[i].value : '',
+          qty: qtyEls[i] ? qtyEls[i].value : '',
+          harga: hargaEls[i] ? hargaEls[i].value : ''
         });
       }
 
@@ -1698,7 +1740,7 @@
       }
 
       canvas.width = wrapper.offsetWidth || 390;
-      canvas.height = wrapper.offsetHeight || 620;
+      canvas.height = wrapper.offsetHeight || 820;
 
       ctx.strokeStyle = '#111111';
       ctx.lineWidth = 2.4;
