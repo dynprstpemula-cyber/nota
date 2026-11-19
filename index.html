@@ -1096,15 +1096,91 @@
     .btn-clear-draw { background-color: #ff9800; color: #fff; }
     .btn-print { background-color: #d90416; color: #fff; }
 
+    /* ================= CETAK / PDF VERTICAL KE BAWAH (9:16) ================= */
+    @page {
+      size: portrait;
+      margin: 8mm;
+    }
+
     @media print {
-      body, .app-container, .page-view {
+      body, .app-container, .page-view, #page-nota {
+        display: block !important;
         height: auto !important;
+        min-height: 0 !important;
         overflow: visible !important;
-        background: #fff !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        position: static !important;
+        animation: none !important;
+        transform: none !important;
       }
-      .app-container { box-shadow: none; max-width: 100%; }
-      .action-bar, .nota-mode-badge, .nota-top-bar, .custom-modal-overlay, .bottom-nav-wrapper, #refresh-banner { display: none !important; }
-      input { border-bottom: none !important; }
+
+      .app-container, #page-nota, .nota-canvas-wrapper {
+        width: 90mm !important;
+        max-width: 90mm !important;
+        aspect-ratio: 9 / 16;
+        min-height: 160mm !important;
+        margin: 0 auto !important;
+        padding: 4mm !important;
+      }
+
+      .action-bar,
+      .nota-mode-badge,
+      .nota-top-bar,
+      .custom-modal-overlay,
+      .bottom-nav-wrapper,
+      #refresh-banner,
+      #write-canvas {
+        display: none !important;
+      }
+
+      /* Susun tabel & bagian nota ke bawah (vertikal), tidak berdampingan */
+      .nota-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+      }
+
+      .left-rows {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+      }
+
+      .right-white-box {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+        margin-top: 6px !important;
+        padding: 4px !important;
+      }
+
+      .right-input-row {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        gap: 6px !important;
+        height: 24px !important;
+        margin-bottom: 0 !important;
+      }
+
+      .summary-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+        margin-top: 6px !important;
+      }
+
+      .signature-section {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        margin-top: 24px !important;
+      }
+
+      input {
+        border-bottom: none !important;
+      }
     }
   </style>
 </head>
