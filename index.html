@@ -20,7 +20,6 @@
       min-height: 100vh;
     }
 
-    /* Container Utama Mobile */
     .app-container {
       width: 100%;
       max-width: 430px;
@@ -31,18 +30,17 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.15);
     }
 
-    /* ================= HALAMAN 1 (DAFTAR PROYEK / KIRI) ================= */
+    /* ================= HALAMAN 1: DAFTAR PROYEK ================= */
     #page-home {
-      padding: 20px 18px 180px 18px;
+      padding: 20px 18px 185px 18px;
       display: block;
     }
 
-    /* Logo Pojok Kanan Atas */
     .top-logo {
       display: flex;
       justify-content: flex-end;
       align-items: flex-end;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       font-weight: 800;
       line-height: 1;
     }
@@ -66,32 +64,34 @@
       letter-spacing: -2px;
     }
 
-    /* Item Proyek */
     .project-item {
       margin-bottom: 22px;
-      cursor: pointer;
-      transition: transform 0.15s ease;
-    }
-    .project-item:active {
-      transform: scale(0.98);
+      position: relative;
     }
 
-    /* Pill Header Proyek */
+    .project-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
     .pill-header {
       display: inline-flex;
       align-items: center;
       background: linear-gradient(90deg, #e61923, #ff3b3b);
       color: white;
       height: 36px;
-      padding: 0 35px 0 46px;
+      padding: 0 26px 0 46px;
       border-radius: 20px;
       position: relative;
       font-family: 'Fredoka', sans-serif;
       font-size: 16px;
       letter-spacing: 0.5px;
       margin-left: 10px;
-      margin-bottom: 10px;
       box-shadow: 0 3px 6px rgba(217, 4, 22, 0.25);
+      cursor: pointer;
     }
     .pill-header::before {
       content: '';
@@ -104,13 +104,29 @@
       border-radius: 50%;
     }
 
-    /* Mini Preview Kartu Nota */
+    .btn-delete-project {
+      background-color: #fff0f0;
+      color: #d90416;
+      border: 1.5px solid #d90416;
+      border-radius: 14px;
+      padding: 4px 12px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-delete-project:hover {
+      background-color: #d90416;
+      color: #ffffff;
+    }
+
     .mini-preview {
       display: flex;
       gap: 8px;
       padding-left: 25px;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
     .mini-preview::after {
       content: '';
@@ -118,14 +134,12 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 35px;
+      height: 28px;
       background: linear-gradient(transparent, rgba(255,255,255,0.95));
       pointer-events: none;
     }
 
-    .mini-left {
-      flex: 1.5;
-    }
+    .mini-left { flex: 1.5; }
     .mini-banner {
       background-color: #d90416;
       color: white;
@@ -134,7 +148,6 @@
       padding: 4px 8px;
       text-align: right;
       border-radius: 2px;
-      position: relative;
       margin-bottom: 5px;
     }
     .mini-subbanner {
@@ -163,10 +176,13 @@
       padding: 0 4px;
     }
     .mini-nama {
-      color: #999;
+      color: #666;
       font-weight: 700;
       font-size: 10px;
       margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .mini-table {
@@ -184,6 +200,19 @@
       color: #d90416;
       text-align: center;
       padding: 1px 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .empty-projects {
+      text-align: center;
+      padding: 40px 16px;
+      color: #777;
+      font-size: 13px;
+      border: 1.5px dashed #ddd;
+      border-radius: 12px;
+      margin-top: 10px;
     }
 
     /* Footer Merah Miring */
@@ -207,7 +236,6 @@
       pointer-events: auto;
       box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
     }
-
     .btn-menu {
       position: absolute;
       bottom: 102px;
@@ -223,7 +251,6 @@
       pointer-events: auto;
       box-shadow: 2px 3px 6px rgba(0,0,0,0.2);
     }
-
     .btn-buat {
       position: absolute;
       bottom: 32px;
@@ -238,12 +265,7 @@
       cursor: pointer;
       pointer-events: auto;
       box-shadow: 2px 4px 8px rgba(0,0,0,0.25);
-      transition: transform 0.1s;
     }
-    .btn-buat:active {
-      transform: rotate(13deg) scale(0.95);
-    }
-
     .btn-setting-circle {
       position: absolute;
       bottom: -15px;
@@ -268,38 +290,286 @@
       margin-bottom: 10px;
     }
 
-    /* ================= HALAMAN 2 (FORM NOTA / KANAN) ================= */
-    #page-nota {
+    /* ================= POPUP VISUAL (HAPUS & KEMBALI) DENGAN BACKGROUND BLUR ================= */
+    .custom-modal-overlay {
       display: none;
-      padding: 14px;
-      min-height: 100vh;
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
 
-    .nota-border-frame {
-      border: 2px solid #b81414;
-      padding: 12px 10px 25px 10px;
-      min-height: calc(100vh - 70px);
+    .custom-modal-box {
+      width: 100%;
+      max-width: 360px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      background: #fff;
+      align-items: flex-start;
+      padding-left: 12px;
+      animation: popIn 0.16s ease-out;
     }
 
-    /* Header Nota */
-    .nota-top-pill {
-      margin-top: -4px;
-      margin-left: -4px;
-      margin-bottom: 8px;
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-banner-pill {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(90deg, #ff262e, #ff4248);
+      color: #ffffff;
+      height: 46px;
+      padding: 0 24px 0 54px;
+      border-radius: 0 24px 24px 0;
+      position: relative;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 18.5px;
+      box-shadow: 0 4px 10px rgba(217, 4, 22, 0.25);
+      margin-left: 14px;
+    }
+
+    .modal-banner-pill::before {
+      content: '';
+      position: absolute;
+      left: -18px;
+      top: -6px;
+      width: 58px;
+      height: 58px;
+      background-color: #d90416;
+      border-radius: 50%;
+    }
+
+    .modal-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      margin-left: 112px;
+    }
+
+    .btn-yes-pill {
+      background-color: #ffffff;
+      color: #d90416;
+      border: 2px solid #d90416;
+      border-radius: 22px;
+      padding: 4px 28px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      transition: transform 0.12s ease, background-color 0.12s ease;
+    }
+    .btn-yes-pill:hover {
+      background-color: #d90416;
+      color: #ffffff;
+    }
+    .btn-yes-pill:active {
+      transform: scale(0.95);
+    }
+
+    .btn-cancel-pill {
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #333;
+      border: 1.5px solid #999;
+      border-radius: 22px;
+      padding: 5px 14px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* ================= HALAMAN 2: SETTING (SWITCH TULIS & KETIK) ================= */
+    #page-setting {
+      display: none;
+      padding: 20px 0 40px 0;
+      min-height: 100vh;
+      background: #ffffff;
+    }
+
+    .setting-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-right: 18px;
+      margin-bottom: 45px;
+    }
+
+    .setting-pill {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(90deg, #ff333b, #ff4b52);
+      color: white;
+      height: 44px;
+      padding: 0 38px 0 58px;
+      border-radius: 0 24px 24px 0;
+      position: relative;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 22px;
+      box-shadow: 0 3px 6px rgba(217, 4, 22, 0.2);
+    }
+    .setting-pill::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: -5px;
+      width: 54px;
+      height: 54px;
+      background-color: #e61923;
+      border-radius: 50%;
+    }
+
+    .switch-row-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      padding-right: 14px;
+      gap: 10px;
+    }
+
+    .switch-label-bar {
+      display: flex;
+      align-items: center;
+      background-color: #d90416;
+      color: #ffffff;
+      height: 54px;
+      flex: 1;
+      max-width: 285px;
+      border-radius: 0 4px 4px 0;
+      position: relative;
+      padding-left: 72px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 19px;
+      letter-spacing: 0.3px;
+    }
+
+    .switch-label-bar::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: -6px;
+      width: 66px;
+      height: 66px;
+      background-color: #9e000c;
+      border-radius: 10px;
+    }
+
+    .switch-label-bar span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .toggle-pill {
+      width: 106px;
+      height: 44px;
+      border-radius: 22px;
+      border: 2px solid #d90416;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-pill.is-on { background-color: #d90416; }
+    .toggle-pill.is-off { background-color: #ffffff; }
+
+    .toggle-knob {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #e61923;
+      position: absolute;
+      top: -4px;
+      transition: left 0.25s ease, background-color 0.25s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .toggle-pill.is-on .toggle-knob {
+      left: 58px;
+      background-color: #ff2a32;
+    }
+    .toggle-pill.is-off .toggle-knob {
+      left: -2px;
+      background-color: #e61923;
+    }
+
+    .setting-info-box {
+      margin: 28px 18px;
+      padding: 12px 14px;
+      background: #fff6f6;
+      border-left: 4px solid #d90416;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .btn-save-setting {
+      display: block;
+      width: calc(100% - 36px);
+      margin: 10px 18px 0 18px;
+      padding: 12px;
+      background-color: #111;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* ================= HALAMAN 3: FORM NOTA ================= */
+    #page-nota {
+      display: none;
+      padding: 16px 14px 32px 14px;
+      min-height: 100vh;
+      background: #ffffff;
+    }
+
+    .nota-canvas-wrapper {
+      position: relative;
+      background: #ffffff;
+      padding-bottom: 24px;
+    }
+
+    #write-canvas {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 20;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .nota-mode-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      background: #f3f3f3;
+      color: #222;
     }
 
     .honda-header-box {
       position: relative;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       padding-top: 8px;
     }
 
-    /* Sayap Honda SVG */
     .honda-wing {
       position: absolute;
       top: -12px;
@@ -347,9 +617,8 @@
       border-radius: 20px;
     }
 
-    /* Data Pelanggan */
     .customer-section {
-      margin: 14px 12px;
+      margin: 16px 14px;
     }
     .customer-title {
       font-family: 'Fredoka', sans-serif;
@@ -366,16 +635,13 @@
     .form-row {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       font-size: 14px;
       font-weight: 700;
     }
-    .form-row label {
-      width: 95px;
-    }
+    .form-row label { width: 95px; }
     .label-black { color: #111; }
     .label-red { color: #d90416; }
-
     .form-row span.colon {
       margin-right: 8px;
       font-weight: 800;
@@ -396,12 +662,11 @@
       background-color: #fff8f8;
     }
 
-    /* Tabel Pekerjaan */
     .nota-table-container {
       background-color: #d90416;
       padding: 5px;
       border-radius: 2px;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
     .nota-grid {
@@ -424,7 +689,6 @@
       min-height: 30px;
     }
 
-    /* Bagian Kiri (NO & Uraian) bergaris merah per baris */
     .left-rows {
       grid-column: 1 / 3;
       display: grid;
@@ -457,16 +721,15 @@
       font-size: 12px;
       font-weight: 600;
       outline: none;
+      background: transparent;
     }
 
-    /* Bagian Kanan (QTY, Harga Satuan, Jumlah) kotak putih menyatu sesuai gambar */
     .right-white-box {
       grid-column: 3 / 6;
       background-color: #ffffff;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 0;
     }
 
     .right-input-row {
@@ -475,9 +738,7 @@
       height: 28px;
       margin-bottom: 4px;
     }
-    .right-input-row:last-child {
-      margin-bottom: 0;
-    }
+    .right-input-row:last-child { margin-bottom: 0; }
 
     .right-input-row input {
       width: 100%;
@@ -489,17 +750,14 @@
       font-weight: 600;
       outline: none;
       padding: 0 2px;
+      background: transparent;
     }
     .right-input-row input.harga-input,
     .right-input-row input.jumlah-input {
       text-align: right;
       padding-right: 4px;
     }
-    .right-input-row input:focus {
-      background-color: #fff3f3;
-    }
 
-    /* Bagian Total Bawah Tabel */
     .summary-grid {
       display: grid;
       grid-template-columns: 1.45fr 1fr;
@@ -520,9 +778,7 @@
       color: #d90416;
       margin-bottom: 3px;
     }
-    .sum-line span.lbl {
-      width: 65px;
-    }
+    .sum-line span.lbl { width: 65px; }
     .sum-line input {
       flex: 1;
       width: 100%;
@@ -533,6 +789,7 @@
       color: #111;
       text-align: right;
       outline: none;
+      background: transparent;
     }
 
     .total-box {
@@ -553,18 +810,14 @@
       margin-top: 2px;
     }
 
-    /* Tanda Tangan */
     .signature-section {
       display: flex;
       justify-content: space-between;
-      margin-top: 55px;
+      margin-top: 62px;
       padding: 0 6px;
       gap: 20px;
     }
-    .sig-box {
-      flex: 1;
-      text-align: center;
-    }
+    .sig-box { flex: 1; text-align: center; }
     .sig-input {
       width: 100%;
       border: none;
@@ -583,36 +836,30 @@
       color: #111;
     }
 
-    /* Bar Kontrol Bawah (Kembali & Cetak) */
     .action-bar {
       display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
     }
     .btn-action {
       flex: 1;
+      min-width: 95px;
       padding: 10px;
       border: none;
       border-radius: 8px;
       font-family: 'Fredoka', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
     }
-    .btn-back {
-      background-color: #333;
-      color: #fff;
-    }
-    .btn-print {
-      background-color: #d90416;
-      color: #fff;
-    }
+    .btn-back { background-color: #333; color: #fff; }
+    .btn-clear-draw { background-color: #ff9800; color: #fff; }
+    .btn-print { background-color: #d90416; color: #fff; }
 
-    /* Mode Cetak / Print */
     @media print {
       body { background: #fff; }
       .app-container { box-shadow: none; max-width: 100%; }
-      .action-bar { display: none !important; }
+      .action-bar, .nota-mode-badge, .custom-modal-overlay { display: none !important; }
       input { border-bottom: none !important; }
     }
   </style>
@@ -621,265 +868,462 @@
 
   <div class="app-container">
 
-    <!-- ================= HALAMAN KIRI (DAFTAR PROYEK) ================= -->
+    <!-- ================= HALAMAN 1: DAFTAR PROYEK ================= -->
     <div id="page-home">
-      <!-- Logo Pojok Kanan Atas -->
       <div class="top-logo">
         <span class="logo-n">N</span><span class="logo-sub">ota</span>
         <span class="logo-h">H</span><span class="logo-sub">onda</span>
       </div>
 
-      <!-- Proyek 0 -->
-      <div class="project-item" onclick="bukaNota('PROYEK')">
-        <div class="pill-header">PROYEK</div>
-        <div class="mini-preview">
-          <div class="mini-left">
-            <div class="mini-banner">BENGKEL HONDA</div>
-            <div class="mini-subbanner">Nota Servis</div>
-            <div class="mini-data">
-              <div class="mini-data-title">Data <span>Pelanggan</span></div>
-              <div class="mini-nama">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</div>
-            </div>
-          </div>
-          <div class="mini-table">
-            <div>NO</div><div>Uraian</div>
-            <div>1</div><div></div>
-            <div>2</div><div></div>
-            <div>3</div><div></div>
-            <div>4</div><div></div>
-            <div>5</div><div></div>
-          </div>
-        </div>
-      </div>
+      <div id="project-list-container"></div>
 
-      <!-- Proyek 1 -->
-      <div class="project-item" onclick="bukaNota('Proyek 1')">
-        <div class="pill-header">PROYEK 1</div>
-        <div class="mini-preview">
-          <div class="mini-left">
-            <div class="mini-banner">BENGKEL HONDA</div>
-            <div class="mini-subbanner">Nota Servis</div>
-            <div class="mini-data">
-              <div class="mini-data-title">Data <span>Pelanggan</span></div>
-              <div class="mini-nama">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</div>
-            </div>
-          </div>
-          <div class="mini-table">
-            <div>NO</div><div>Uraian</div>
-            <div>1</div><div></div>
-            <div>2</div><div></div>
-            <div>3</div><div></div>
-            <div>4</div><div></div>
-            <div>5</div><div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Proyek 2 -->
-      <div class="project-item" onclick="bukaNota('Proyek 2')">
-        <div class="pill-header">PROYEK 2</div>
-        <div class="mini-preview">
-          <div class="mini-left">
-            <div class="mini-banner">BENGKEL HONDA</div>
-            <div class="mini-subbanner">Nota Servis</div>
-            <div class="mini-data">
-              <div class="mini-data-title">Data <span>Pelanggan</span></div>
-              <div class="mini-nama">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</div>
-            </div>
-          </div>
-          <div class="mini-table">
-            <div>NO</div><div>Uraian</div>
-            <div>1</div><div></div>
-            <div>2</div><div></div>
-            <div>3</div><div></div>
-            <div>4</div><div></div>
-            <div>5</div><div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigasi Bawah Merah Miring -->
       <div class="bottom-nav-wrapper">
         <div class="red-slant-bg"></div>
-        <button class="btn-menu" onclick="alert('Menu Daftar Proyek Bengkel Honda')">menu</button>
-        <button class="btn-buat" onclick="bukaNota('Proyek 1')">buat</button>
-        <div class="btn-setting-circle" onclick="alert('Pengaturan Bengkel Honda')">
+        <button class="btn-menu" onclick="bukaHome()">menu</button>
+        <button class="btn-buat" onclick="buatProyekBaru()">buat</button>
+        <div class="btn-setting-circle" onclick="bukaSetting()">
           <span class="btn-setting-text">Setting</span>
         </div>
       </div>
     </div>
 
-    <!-- ================= HALAMAN KANAN (ISI NOTA SERVIS) ================= -->
+    <!-- ================= POPUP 1: KONFIRMASI HAPUS DENGAN BLUR ================= -->
+    <div id="delete-modal-overlay" class="custom-modal-overlay" onclick="tutupModalHapus()">
+      <div class="custom-modal-box" onclick="event.stopPropagation()">
+        <div class="modal-banner-pill">klik yes untuk hapus</div>
+        <div class="modal-actions-row">
+          <button class="btn-yes-pill" onclick="konfirmasiHapusProyek()">Yes</button>
+          <button class="btn-cancel-pill" onclick="tutupModalHapus()">Batal</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= POPUP 2: KONFIRMASI KEMBALI (KLIK 2X MODE TULIS) ================= -->
+    <div id="back-modal-overlay" class="custom-modal-overlay" onclick="tutupModalKembali()">
+      <div class="custom-modal-box" onclick="event.stopPropagation()">
+        <div class="modal-banner-pill">klik yes untuk kembali</div>
+        <div class="modal-actions-row">
+          <button class="btn-yes-pill" onclick="konfirmasiKembaliKeHome()">Yes</button>
+          <button class="btn-cancel-pill" onclick="tutupModalKembali()">Batal</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= HALAMAN 2: SETTING ================= -->
+    <div id="page-setting">
+      <div class="setting-top-bar">
+        <div class="setting-pill">Setting</div>
+        <div class="top-logo" style="margin-bottom:0;">
+          <span class="logo-n">N</span><span class="logo-sub">ota</span>
+          <span class="logo-h">H</span><span class="logo-sub">onda</span>
+        </div>
+      </div>
+
+      <div class="switch-row-wrapper">
+        <div class="switch-label-bar">
+          <span>ON untuk tulis</span>
+        </div>
+        <div id="switch-tulis" class="toggle-pill is-off" onclick="setMode('tulis')">
+          <div class="toggle-knob"></div>
+        </div>
+      </div>
+
+      <div class="switch-row-wrapper">
+        <div class="switch-label-bar">
+          <span>ON untuk ketik</span>
+        </div>
+        <div id="switch-ketik" class="toggle-pill is-on" onclick="setMode('ketik')">
+          <div class="toggle-knob"></div>
+        </div>
+      </div>
+
+      <div class="setting-info-box" id="mode-description">
+        Mode saat ini: <b>ON untuk ketik</b> (Tulis/coret otomatis OFF). Kamu bisa mengetik isi nota & menghitung otomatis.
+      </div>
+
+      <button class="btn-save-setting" onclick="bukaHome()">Simpan & Kembali</button>
+    </div>
+
+    <!-- ================= HALAMAN 3: FORM NOTA ================= -->
     <div id="page-nota">
-      <div class="nota-border-frame">
-        <div>
-          <!-- Pill Judul Proyek -->
-          <div class="pill-header nota-top-pill" id="judul-proyek-nota">Proyek 1</div>
+      <div class="nota-mode-badge" id="nota-mode-indicator">Mode: Ketik</div>
 
-          <!-- Header Bengkel Honda & Sayap -->
-          <div class="honda-header-box">
-            <!-- SVG Sayap Honda -->
-            <svg class="honda-wing" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M185 10 C130 22, 65 48, 12 88 L22 96 C75 62, 130 38, 178 26 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
-              <path d="M172 34 C120 46, 65 68, 22 100 L30 107 C78 76, 125 56, 165 46 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
-              <path d="M158 54 C112 64, 65 82, 30 110 L38 117 C78 90, 118 74, 152 65 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
-              <path d="M142 72 C104 80, 68 95, 38 119 L46 125 C80 103, 112 90, 136 83 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
-            </svg>
+      <div class="nota-canvas-wrapper" id="nota-capture-area">
+        <canvas id="write-canvas"></canvas>
 
-            <div class="bengkel-bar">BENGKEL HONDA</div>
+        <div class="honda-header-box">
+          <svg class="honda-wing" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M185 10 C130 22, 65 48, 12 88 L22 96 C75 62, 130 38, 178 26 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
+            <path d="M172 34 C120 46, 65 68, 22 100 L30 107 C78 76, 125 56, 165 46 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
+            <path d="M158 54 C112 64, 65 82, 30 110 L38 117 C78 90, 118 74, 152 65 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
+            <path d="M142 72 C104 80, 68 95, 38 119 L46 125 C80 103, 112 90, 136 83 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
+          </svg>
 
-            <div class="nota-servis-row">
-              <div class="h-badge">H</div>
-              <div class="nota-servis-pill">—— &nbsp; Nota Servis &nbsp; ——</div>
+          <div class="bengkel-bar">BENGKEL HONDA</div>
+
+          <div class="nota-servis-row">
+            <div class="h-badge">H</div>
+            <div class="nota-servis-pill">—— &nbsp; Nota Servis &nbsp; ——</div>
+          </div>
+        </div>
+
+        <div class="customer-section">
+          <div class="customer-title">Data <span>Pelanggan</span></div>
+          <div class="form-row">
+            <label class="label-black">Nama</label>
+            <span class="colon">:</span>
+            <input type="text" id="input-nama" placeholder="Ketik nama pelanggan..." oninput="simpanProyekAktif()">
+          </div>
+          <div class="form-row">
+            <label class="label-red">No. polisi</label>
+            <span class="colon">:</span>
+            <input type="text" id="input-nopol" placeholder="Contoh: Z 1234 AB" oninput="simpanProyekAktif()">
+          </div>
+          <div class="form-row">
+            <label class="label-black">Jenis Motor</label>
+            <span class="colon">:</span>
+            <input type="text" id="input-motor" placeholder="Contoh: Beat / Vario" oninput="simpanProyekAktif()">
+          </div>
+        </div>
+
+        <div class="nota-table-container">
+          <div class="nota-grid">
+            <div class="th-cell">NO</div>
+            <div class="th-cell">Uraian Pekerjaan</div>
+            <div class="th-cell">QTY</div>
+            <div class="th-cell">Harga<br>Satuan</div>
+            <div class="th-cell">Jumlah</div>
+
+            <div class="left-rows">
+              <div class="no-cell">1</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">2</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">3</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">4</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+              <div class="no-cell">5</div>
+              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+            </div>
+
+            <div class="right-white-box" id="calc-rows">
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
+              <div class="right-input-row">
+                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                <input type="text" class="jumlah-input" readonly>
+              </div>
             </div>
           </div>
 
-          <!-- Data Pelanggan -->
-          <div class="customer-section">
-            <div class="customer-title">Data <span>Pelanggan</span></div>
-            <div class="form-row">
-              <label class="label-black">Nama</label>
-              <span class="colon">:</span>
-              <input type="text" placeholder="Ketik nama pelanggan...">
-            </div>
-            <div class="form-row">
-              <label class="label-red">No. polisi</label>
-              <span class="colon">:</span>
-              <input type="text" placeholder="Contoh: Z 1234 AB">
-            </div>
-            <div class="form-row">
-              <label class="label-black">Jenis Motor</label>
-              <span class="colon">:</span>
-              <input type="text" placeholder="Contoh: Beat / Vario">
-            </div>
-          </div>
-
-          <!-- Tabel Rincian Pekerjaan -->
-          <div class="nota-table-container">
-            <div class="nota-grid">
-              <!-- Header Kolom -->
-              <div class="th-cell">NO</div>
-              <div class="th-cell">Uraian Pekerjaan</div>
-              <div class="th-cell">QTY</div>
-              <div class="th-cell">Harga<br>Satuan</div>
-              <div class="th-cell">Jumlah</div>
-
-              <!-- Baris Kiri (1-5) -->
-              <div class="left-rows">
-                <div class="no-cell">1</div>
-                <div class="uraian-cell"><input type="text" placeholder="Tulis servis / sparepart..."></div>
-
-                <div class="no-cell">2</div>
-                <div class="uraian-cell"><input type="text"></div>
-
-                <div class="no-cell">3</div>
-                <div class="uraian-cell"><input type="text"></div>
-
-                <div class="no-cell">4</div>
-                <div class="uraian-cell"><input type="text"></div>
-
-                <div class="no-cell">5</div>
-                <div class="uraian-cell"><input type="text"></div>
+          <div class="summary-grid">
+            <div class="subtotal-box">
+              <div class="sum-line">
+                <span class="lbl">Sub Total</span>
+                <span>:</span>
+                <input type="text" id="sub-total" readonly value="0">
               </div>
-
-              <!-- Kotak Putih Kanan (QTY, Harga Satuan, Jumlah) -->
-              <div class="right-white-box" id="calc-rows">
-                <div class="right-input-row">
-                  <input type="number" class="qty-input" min="0" placeholder="0" oninput="hitungTotal()">
-                  <input type="number" class="harga-input" min="0" placeholder="0" oninput="hitungTotal()">
-                  <input type="text" class="jumlah-input" readonly placeholder="0">
-                </div>
-                <div class="right-input-row">
-                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                  <input type="text" class="jumlah-input" readonly>
-                </div>
-                <div class="right-input-row">
-                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                  <input type="text" class="jumlah-input" readonly>
-                </div>
-                <div class="right-input-row">
-                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                  <input type="text" class="jumlah-input" readonly>
-                </div>
-                <div class="right-input-row">
-                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                  <input type="text" class="jumlah-input" readonly>
-                </div>
+              <div class="sum-line">
+                <span class="lbl">Diskon</span>
+                <span>:</span>
+                <input type="number" id="diskon" min="0" oninput="hitungTotal()">
               </div>
             </div>
 
-            <!-- Sub Total, Diskon, Total -->
-            <div class="summary-grid">
-              <div class="subtotal-box">
-                <div class="sum-line">
-                  <span class="lbl">Sub Total</span>
-                  <span>:</span>
-                  <input type="text" id="sub-total" readonly value="0">
-                </div>
-                <div class="sum-line">
-                  <span class="lbl">Diskon</span>
-                  <span>:</span>
-                  <input type="number" id="diskon" min="0" placeholder="0" oninput="hitungTotal()">
-                </div>
-              </div>
-
-              <div class="total-box">
-                <div class="total-label">TOTAL :</div>
-                <div class="total-value" id="grand-total">Rp 0</div>
-              </div>
+            <div class="total-box">
+              <div class="total-label">TOTAL :</div>
+              <div class="total-value" id="grand-total">Rp 0</div>
             </div>
           </div>
         </div>
 
-        <!-- Tanda Tangan -->
         <div class="signature-section">
           <div class="sig-box">
-            <input type="text" class="sig-input" placeholder="(Nama / TTD)">
+            <input type="text" id="sig-pelanggan" class="sig-input" oninput="simpanProyekAktif()">
             <div class="sig-label">Tanda tangan pelanggan.</div>
           </div>
           <div class="sig-box">
-            <input type="text" class="sig-input" placeholder="(Nama / TTD)">
+            <input type="text" id="sig-kasir" class="sig-input" oninput="simpanProyekAktif()">
             <div class="sig-label">Tanda tangan kasir.</div>
           </div>
         </div>
       </div>
 
-      <!-- Tombol Navigasi Bawah -->
       <div class="action-bar">
-        <button class="btn-action btn-back" onclick="kembaliKeHome()">← Kembali</button>
-        <button class="btn-action btn-print" onclick="window.print()">Cetak Nota</button>
+        <button class="btn-action btn-back" onclick="bukaHome()">← Kembali</button>
+        <button class="btn-action btn-clear-draw" id="btn-hapus-coretan" onclick="bersihkanCoretan()" style="display:none;">Hapus Tulisan</button>
+        <button class="btn-action btn-print" onclick="cetakNota()">Cetak Nota</button>
       </div>
     </div>
 
   </div>
 
   <script>
-    // Berpindah dari halaman kiri ke halaman kanan (Nota Servis)
-    function bukaNota(namaProyek) {
-      document.getElementById('judul-proyek-nota').innerText = namaProyek;
+    const STORAGE_KEY = 'honda_nota_proyek_v1';
+    const MODE_KEY = 'honda_nota_mode_v1';
+
+    let proyekList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    let proyekAktifId = null;
+    let targetHapusId = null;
+    let currentMode = localStorage.getItem(MODE_KEY) || 'ketik';
+
+    renderDaftarProyek();
+    perbaruiTampilanSwitch();
+
+    function sembunyikanSemuaHalaman() {
       document.getElementById('page-home').style.display = 'none';
-      document.getElementById('page-nota').style.display = 'block';
-      window.scrollTo(0, 0);
+      document.getElementById('page-setting').style.display = 'none';
+      document.getElementById('page-nota').style.display = 'none';
     }
 
-    // Kembali ke halaman daftar proyek
-    function kembaliKeHome() {
-      document.getElementById('page-nota').style.display = 'none';
+    function bukaHome() {
+      simpanProyekAktif();
+      renderDaftarProyek();
+      sembunyikanSemuaHalaman();
       document.getElementById('page-home').style.display = 'block';
       window.scrollTo(0, 0);
     }
 
-    // Format angka ke ribuan Indonesia
-    function formatRupiah(angka) {
-      return angka.toLocaleString('id-ID');
+    function bukaSetting() {
+      sembunyikanSemuaHalaman();
+      document.getElementById('page-setting').style.display = 'block';
+      perbaruiTampilanSwitch();
+      window.scrollTo(0, 0);
     }
 
-    // Hitung otomatis Jumlah per baris, Sub Total, dan Total Akhir
-    function hitungTotal() {
+    function setMode(modeDipilih) {
+      currentMode = modeDipilih;
+      localStorage.setItem(MODE_KEY, currentMode);
+      perbaruiTampilanSwitch();
+    }
+
+    function perbaruiTampilanSwitch() {
+      const swTulis = document.getElementById('switch-tulis');
+      const swKetik = document.getElementById('switch-ketik');
+      const desc = document.getElementById('mode-description');
+
+      if (currentMode === 'tulis') {
+        swTulis.className = 'toggle-pill is-on';
+        swKetik.className = 'toggle-pill is-off';
+        desc.innerHTML = 'Mode saat ini: <b>ON untuk tulis</b> (Ketik otomatis <b>OFF</b>). Kamu bisa menulis/menggambar langsung di atas nota. Klik 2x untuk kembali.';
+      } else {
+        swTulis.className = 'toggle-pill is-off';
+        swKetik.className = 'toggle-pill is-on';
+        desc.innerHTML = 'Mode saat ini: <b>ON untuk ketik</b> (Tulis otomatis <b>OFF</b>). Kamu bisa mengetik data & perhitungan otomatis.';
+      }
+    }
+
+    function buatProyekBaru() {
+      const nomorUrut = proyekList.length + 1;
+      const baru = {
+        id: 'proyek_' + Date.now(),
+        judul: 'Proyek ' + nomorUrut,
+        nama: '',
+        nopol: '',
+        motor: '',
+        baris: [
+          { uraian: '', qty: '', harga: '' },
+          { uraian: '', qty: '', harga: '' },
+          { uraian: '', qty: '', harga: '' },
+          { uraian: '', qty: '', harga: '' },
+          { uraian: '', qty: '', harga: '' }
+        ],
+        diskon: '',
+        sigPelanggan: '',
+        sigKasir: '',
+        drawingData: ''
+      };
+
+      proyekList.unshift(baru);
+      simpanKeStorage();
+      bukaNotaById(baru.id);
+    }
+
+    // Modal Hapus Proyek
+    function hapusProyek(id, event) {
+      event.stopPropagation();
+      targetHapusId = id;
+      document.getElementById('delete-modal-overlay').style.display = 'flex';
+    }
+
+    function tutupModalHapus() {
+      targetHapusId = null;
+      document.getElementById('delete-modal-overlay').style.display = 'none';
+    }
+
+    function konfirmasiHapusProyek() {
+      if (!targetHapusId) return;
+      proyekList = proyekList.filter(p => p.id !== targetHapusId);
+      if (proyekAktifId === targetHapusId) {
+        proyekAktifId = null;
+      }
+      simpanKeStorage();
+      renderDaftarProyek();
+      tutupModalHapus();
+    }
+
+    // Modal Kembali (muncul saat klik/ketuk 2 kali di mode tulis)
+    function bukaModalKembali() {
+      document.getElementById('back-modal-overlay').style.display = 'flex';
+    }
+
+    function tutupModalKembali() {
+      document.getElementById('back-modal-overlay').style.display = 'none';
+    }
+
+    function konfirmasiKembaliKeHome() {
+      tutupModalKembali();
+      bukaHome();
+    }
+
+    function simpanKeStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(proyekList));
+    }
+
+    function renderDaftarProyek() {
+      const container = document.getElementById('project-list-container');
+      if (proyekList.length === 0) {
+        container.innerHTML = `
+          <div class="empty-projects">
+            Belum ada proyek yang dibuat.<br>
+            Tekan tombol <b>buat</b> di bawah untuk membuat nota baru.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = proyekList.map(p => {
+        const uraianPreview = p.baris.map(b => b.uraian || '');
+        return `
+          <div class="project-item">
+            <div class="project-header-row">
+              <div class="pill-header" onclick="bukaNotaById('${p.id}')">${escapeHtml(p.judul)}</div>
+              <button class="btn-delete-project" onclick="hapusProyek('${p.id}', event)">Hapus</button>
+            </div>
+            <div class="mini-preview" onclick="bukaNotaById('${p.id}')">
+              <div class="mini-left">
+                <div class="mini-banner">BENGKEL HONDA</div>
+                <div class="mini-subbanner">Nota Servis</div>
+                <div class="mini-data">
+                  <div class="mini-data-title">Data <span>Pelanggan</span></div>
+                  <div class="mini-nama">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : ${escapeHtml(p.nama)}</div>
+                </div>
+              </div>
+              <div class="mini-table">
+                <div>NO</div><div>Uraian</div>
+                <div>1</div><div>${escapeHtml(uraianPreview[0])}</div>
+                <div>2</div><div>${escapeHtml(uraianPreview[1])}</div>
+                <div>3</div><div>${escapeHtml(uraianPreview[2])}</div>
+                <div>4</div><div>${escapeHtml(uraianPreview[3])}</div>
+                <div>5</div><div>${escapeHtml(uraianPreview[4])}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function bukaNotaById(id) {
+      const proyek = proyekList.find(p => p.id === id);
+      if (!proyek) return;
+
+      proyekAktifId = id;
+      sembunyikanSemuaHalaman();
+      document.getElementById('page-nota').style.display = 'block';
+      window.scrollTo(0, 0);
+
+      document.getElementById('input-nama').value = proyek.nama || '';
+      document.getElementById('input-nopol').value = proyek.nopol || '';
+      document.getElementById('input-motor').value = proyek.motor || '';
+      document.getElementById('diskon').value = proyek.diskon || '';
+      document.getElementById('sig-pelanggan').value = proyek.sigPelanggan || '';
+      document.getElementById('sig-kasir').value = proyek.sigKasir || '';
+
+      const uraianEls = document.querySelectorAll('.uraian-input');
+      const qtyEls = document.querySelectorAll('.qty-input');
+      const hargaEls = document.querySelectorAll('.harga-input');
+
+      for (let i = 0; i < 5; i++) {
+        const b = (proyek.baris && proyek.baris[i]) ? proyek.baris[i] : { uraian: '', qty: '', harga: '' };
+        uraianEls[i].value = b.uraian || '';
+        qtyEls[i].value = b.qty || '';
+        hargaEls[i].value = b.harga || '';
+      }
+
+      hitungTotal(false);
+      terapkanModeKeNota(proyek.drawingData || '');
+    }
+
+    function simpanProyekAktif() {
+      if (!proyekAktifId) return;
+      const proyek = proyekList.find(p => p.id === proyekAktifId);
+      if (!proyek) return;
+
+      proyek.nama = document.getElementById('input-nama').value;
+      proyek.nopol = document.getElementById('input-nopol').value;
+      proyek.motor = document.getElementById('input-motor').value;
+      proyek.diskon = document.getElementById('diskon').value;
+      proyek.sigPelanggan = document.getElementById('sig-pelanggan').value;
+      proyek.sigKasir = document.getElementById('sig-kasir').value;
+
+      const uraianEls = document.querySelectorAll('.uraian-input');
+      const qtyEls = document.querySelectorAll('.qty-input');
+      const hargaEls = document.querySelectorAll('.harga-input');
+
+      proyek.baris = [];
+      for (let i = 0; i < 5; i++) {
+        proyek.baris.push({
+          uraian: uraianEls[i].value,
+          qty: qtyEls[i].value,
+          harga: hargaEls[i].value
+        });
+      }
+
+      const canvas = document.getElementById('write-canvas');
+      if (canvas) {
+        proyek.drawingData = canvas.toDataURL();
+      }
+
+      simpanKeStorage();
+    }
+
+    function formatRupiah(angka) {
+      return Number(angka || 0).toLocaleString('id-ID');
+    }
+
+    function hitungTotal(shouldSave = true) {
       const baris = document.querySelectorAll('.right-input-row');
       let subTotal = 0;
 
@@ -890,12 +1334,7 @@
 
         const jumlah = qty * harga;
         subTotal += jumlah;
-
-        if (jumlah > 0) {
-          jumlahField.value = formatRupiah(jumlah);
-        } else {
-          jumlahField.value = '';
-        }
+        jumlahField.value = jumlah > 0 ? formatRupiah(jumlah) : '';
       });
 
       const diskon = parseFloat(document.getElementById('diskon').value) || 0;
@@ -903,8 +1342,143 @@
 
       document.getElementById('sub-total').value = formatRupiah(subTotal);
       document.getElementById('grand-total').innerText = 'Rp ' + formatRupiah(totalAkhir);
+
+      if (shouldSave) simpanProyekAktif();
+    }
+
+    const canvas = document.getElementById('write-canvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let lastTapTime = 0;
+    let lastTapX = 0;
+    let lastTapY = 0;
+
+    function setupCanvasSize(savedDataUrl = '') {
+      const wrapper = document.getElementById('nota-capture-area');
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      if (canvas.width > 0 && canvas.height > 0) {
+        tempCanvas.getContext('2d').drawImage(canvas, 0, 0);
+      }
+
+      canvas.width = wrapper.offsetWidth;
+      canvas.height = wrapper.offsetHeight;
+
+      ctx.strokeStyle = '#111111';
+      ctx.lineWidth = 2.4;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      if (savedDataUrl) {
+        const img = new Image();
+        img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.src = savedDataUrl;
+      } else if (tempCanvas.width > 0) {
+        ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    function terapkanModeKeNota(savedDataUrl = '') {
+      const badge = document.getElementById('nota-mode-indicator');
+      const btnHapusCoretan = document.getElementById('btn-hapus-coretan');
+      const allInputs = document.querySelectorAll('#page-nota input:not(.jumlah-input):not(#sub-total)');
+
+      if (currentMode === 'tulis') {
+        badge.innerText = 'Mode: ON untuk tulis (Klik 2x untuk kembali)';
+        canvas.style.display = 'block';
+        btnHapusCoretan.style.display = 'inline-block';
+        allInputs.forEach(inp => inp.disabled = true);
+        setupCanvasSize(savedDataUrl);
+      } else {
+        badge.innerText = 'Mode: ON untuk ketik (Tulis OFF)';
+        canvas.style.display = 'none';
+        btnHapusCoretan.style.display = 'none';
+        allInputs.forEach(inp => inp.disabled = false);
+        if (savedDataUrl) {
+          setupCanvasSize(savedDataUrl);
+        }
+      }
+    }
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function startDraw(e) {
+      if (currentMode !== 'tulis') return;
+      e.preventDefault();
+
+      // Deteksi ketuk dua kali (double tap) di layar sentuh HP
+      if (e.touches && e.touches.length === 1) {
+        const now = Date.now();
+        const pos = getPos(e);
+        const jarak = Math.hypot(pos.x - lastTapX, pos.y - lastTapY);
+
+        if (now - lastTapTime < 320 && jarak < 35) {
+          lastTapTime = 0;
+          isDrawing = false;
+          bukaModalKembali();
+          return;
+        }
+        lastTapTime = now;
+        lastTapX = pos.x;
+        lastTapY = pos.y;
+      }
+
+      isDrawing = true;
+      const pos = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+    }
+
+    function moveDraw(e) {
+      if (!isDrawing || currentMode !== 'tulis') return;
+      e.preventDefault();
+      const pos = getPos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+    }
+
+    function endDraw() {
+      if (!isDrawing) return;
+      isDrawing = false;
+      ctx.closePath();
+      simpanProyekAktif();
+    }
+
+    // Event klik dua kali (double click) untuk desktop/mouse di mode tulis
+    canvas.addEventListener('dblclick', function(e) {
+      if (currentMode === 'tulis') {
+        e.preventDefault();
+        isDrawing = false;
+        bukaModalKembali();
+      }
+    });
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', moveDraw);
+    window.addEventListener('mouseup', endDraw);
+
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', moveDraw, { passive: false });
+    window.addEventListener('touchend', endDraw);
+
+    function bersihkanCoretan() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      simpanProyekAktif();
+    }
+
+    function cetakNota() {
+      simpanProyekAktif();
+      window.print();
     }
   </script>
-
 </body>
 </html>
