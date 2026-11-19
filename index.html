@@ -31,6 +31,101 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.15);
     }
 
+    /* ================= VISUAL BANNER ATAS + ANIMASI TEKS ================= */
+    #refresh-banner {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      height: 155px;
+      background: linear-gradient(180deg, #ff1722 0%, #e60b16 52%, rgba(255, 255, 255, 0) 100%);
+      z-index: 800;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 14px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    #refresh-banner.show-banner {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    #refresh-banner.hide-banner {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-12px);
+    }
+
+    .banner-wing-bg {
+      position: absolute;
+      top: 4px;
+      width: 170px;
+      height: auto;
+      opacity: 0.42;
+      z-index: 1;
+    }
+
+    .refresh-main-text {
+      position: relative;
+      z-index: 2;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 21px;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 6px rgba(120, 0, 0, 0.55);
+      display: flex;
+      align-items: center;
+      animation: textFloatPulse 1.35s ease-in-out infinite;
+    }
+
+    .animated-dots {
+      display: inline-block;
+      min-width: 28px;
+      text-align: left;
+    }
+
+    .refresh-sub-text {
+      position: relative;
+      z-index: 2;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 23px;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.85);
+      filter: blur(0.6px);
+      text-shadow: 0 2px 6px rgba(130, 0, 0, 0.35);
+      margin-top: -2px;
+      animation: subTextSlide 1.35s ease-in-out infinite alternate;
+    }
+
+    @keyframes textFloatPulse {
+      0%, 100% {
+        transform: scale(0.98) translateY(0px);
+        letter-spacing: 0.4px;
+      }
+      50% {
+        transform: scale(1.03) translateY(-2px);
+        letter-spacing: 1px;
+      }
+    }
+
+    @keyframes subTextSlide {
+      from {
+        transform: translateX(-3px);
+        opacity: 0.72;
+      }
+      to {
+        transform: translateX(3px);
+        opacity: 0.96;
+      }
+    }
+
     /* ================= ANIMASI GESER ANTAR HALAMAN ================= */
     .page-view {
       display: none;
@@ -72,7 +167,7 @@
       }
     }
 
-    /* ================= HALAMAN 1: DAFTAR PROYEK (FIXED NAV + SCROLLABLE LIST) ================= */
+    /* ================= HALAMAN 1: DAFTAR PROYEK ================= */
     #page-home {
       display: flex;
       flex-direction: column;
@@ -111,7 +206,6 @@
       letter-spacing: -2px;
     }
 
-    /* Hanya bagian proyek yang bisa di-scroll */
     #project-list-container {
       flex: 1;
       overflow-y: auto;
@@ -306,7 +400,7 @@
       margin-top: 10px;
     }
 
-    /* Footer Merah Miring Tetap di Tempat (Tidak Ikut Scroll) */
+    /* Footer Merah Miring Tetap di Tempat */
     .bottom-nav-wrapper {
       position: absolute;
       bottom: 0;
@@ -436,7 +530,6 @@
       border-radius: 50%;
     }
 
-    /* Visual Rename sesuai gambar: kapsul merah kosong dengan lingkaran merah di kiri & tombol Yes */
     .rename-input-pill {
       display: inline-flex;
       align-items: center;
@@ -1009,7 +1102,7 @@
         background: #fff !important;
       }
       .app-container { box-shadow: none; max-width: 100%; }
-      .action-bar, .nota-mode-badge, .nota-top-bar, .custom-modal-overlay, .bottom-nav-wrapper { display: none !important; }
+      .action-bar, .nota-mode-badge, .nota-top-bar, .custom-modal-overlay, .bottom-nav-wrapper, #refresh-banner { display: none !important; }
       input { border-bottom: none !important; }
     }
   </style>
@@ -1018,6 +1111,19 @@
 
   <div class="app-container">
 
+    <!-- ================= VISUAL BANNER ATAS (MENGGANTI MESIN.... / HONDA) ================= -->
+    <div id="refresh-banner" class="show-banner">
+      <svg class="banner-wing-bg" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M205 12 C145 24, 72 52, 14 92 L24 100 C82 64, 145 40, 198 28 Z" fill="#ffffff"/>
+        <path d="M190 36 C134 48, 72 70, 24 104 L34 111 C86 78, 138 58, 182 48 Z" fill="#ffffff"/>
+        <path d="M174 56 C124 66, 72 84, 34 113 L42 119 C86 92, 130 76, 168 67 Z" fill="#ffffff"/>
+      </svg>
+      <div class="refresh-main-text">
+        MENGGANTI MESIN<span class="animated-dots" id="banner-dots">....</span>
+      </div>
+      <div class="refresh-sub-text">HONDA</div>
+    </div>
+
     <!-- ================= HALAMAN 1: DAFTAR PROYEK ================= -->
     <div id="page-home" class="page-view" style="display:flex;">
       <div class="top-logo">
@@ -1025,13 +1131,11 @@
         <span class="logo-h">H</span><span class="logo-sub">onda</span>
       </div>
 
-      <!-- Hanya kontainer ini yang bisa di-scroll -->
       <div id="project-list-container"></div>
 
-      <!-- Navigasi Bawah Tetap di Tempat -->
       <div class="bottom-nav-wrapper">
         <div class="red-slant-bg"></div>
-        <button class="btn-menu" onclick="bukaHome('left')">menu</button>
+        <button class="btn-menu" onclick="bukaHome('left', true)">menu</button>
         <button class="btn-buat" onclick="buatProyekBaru()">buat</button>
         <div class="btn-setting-circle" onclick="bukaSetting('right')">
           <span class="btn-setting-text">Setting</span>
@@ -1050,7 +1154,7 @@
       </div>
     </div>
 
-    <!-- ================= POPUP 2: RENAME PROYEK (VISUAL BARU) ================= -->
+    <!-- ================= POPUP 2: RENAME PROYEK ================= -->
     <div id="rename-modal-overlay" class="custom-modal-overlay" onclick="tutupModalRename()">
       <div class="custom-modal-box" onclick="event.stopPropagation()">
         <div class="rename-input-pill">
@@ -1106,14 +1210,14 @@
         Mode saat ini: <b>ON untuk ketik</b> (Tulis/coret otomatis OFF). Kamu bisa mengetik isi nota & menghitung otomatis.
       </div>
 
-      <button class="btn-save-setting" onclick="bukaHome('left')">Simpan & Kembali</button>
+      <button class="btn-save-setting" onclick="bukaHome('left', false)">Simpan & Kembali</button>
     </div>
 
     <!-- ================= HALAMAN 3: FORM NOTA ================= -->
     <div id="page-nota" class="page-view">
       <div class="nota-top-bar">
         <div class="nota-mode-badge" id="nota-mode-indicator">Mode: Ketik</div>
-        <button class="btn-home-pill" onclick="bukaHome('left')">home</button>
+        <button class="btn-home-pill" onclick="bukaHome('left', false)">home</button>
       </div>
 
       <div class="nota-canvas-wrapper" id="nota-capture-area">
@@ -1242,7 +1346,7 @@
       </div>
 
       <div class="action-bar">
-        <button class="btn-action btn-back" onclick="bukaHome('left')">← Kembali</button>
+        <button class="btn-action btn-back" onclick="bukaHome('left', false)">← Kembali</button>
         <button class="btn-action btn-clear-draw" id="btn-hapus-coretan" onclick="bersihkanCoretan()" style="display:none;">Hapus Tulisan</button>
         <button class="btn-action btn-print" onclick="cetakNota()">Cetak Nota</button>
       </div>
@@ -1260,8 +1364,32 @@
     let targetRenameId = null;
     let currentMode = localStorage.getItem(MODE_KEY) || 'ketik';
 
+    // Animasi titik pada teks banner ("MENGGANTI MESIN....")
+    const dotFrames = ['.', '..', '...', '....'];
+    let dotIdx = 0;
+    setInterval(() => {
+      const dotsEl = document.getElementById('banner-dots');
+      if (dotsEl) {
+        dotsEl.innerText = dotFrames[dotIdx % dotFrames.length];
+        dotIdx++;
+      }
+    }, 280);
+
+    function tampilkanBannerMenyegarkan(durasi = 1400) {
+      const banner = document.getElementById('refresh-banner');
+      if (!banner) return;
+      banner.classList.remove('hide-banner');
+      banner.classList.add('show-banner');
+      clearTimeout(window.__bannerTimer);
+      window.__bannerTimer = setTimeout(() => {
+        banner.classList.remove('show-banner');
+        banner.classList.add('hide-banner');
+      }, durasi);
+    }
+
     renderDaftarProyek();
     perbaruiTampilanSwitch();
+    tampilkanBannerMenyegarkan(1400);
 
     function tampilkanDenganGeser(pageId, arah = 'right') {
       document.querySelectorAll('.page-view').forEach(p => {
@@ -1275,10 +1403,13 @@
       target.scrollTop = 0;
     }
 
-    function bukaHome(arah = 'left') {
+    function bukaHome(arah = 'left', refreshVisual = false) {
       simpanProyekAktif();
       renderDaftarProyek();
       tampilkanDenganGeser('page-home', arah);
+      if (refreshVisual) {
+        tampilkanBannerMenyegarkan(1300);
+      }
     }
 
     function bukaSetting(arah = 'right') {
@@ -1335,7 +1466,6 @@
       bukaNotaById(baru.id, 'right');
     }
 
-    // Modal Rename Proyek
     function bukaModalRename(id, event) {
       event.stopPropagation();
       const proyek = proyekList.find(p => p.id === id);
@@ -1369,7 +1499,6 @@
       tutupModalRename();
     }
 
-    // Modal Hapus Proyek
     function hapusProyek(id, event) {
       event.stopPropagation();
       targetHapusId = id;
@@ -1392,7 +1521,6 @@
       tutupModalHapus();
     }
 
-    // Modal Kembali (muncul saat klik/ketuk 2 kali di mode tulis)
     function bukaModalKembali() {
       document.getElementById('back-modal-overlay').style.display = 'flex';
     }
@@ -1403,7 +1531,7 @@
 
     function konfirmasiKembaliKeHome() {
       tutupModalKembali();
-      bukaHome('left');
+      bukaHome('left', false);
     }
 
     function simpanKeStorage() {
