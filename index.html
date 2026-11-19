@@ -30,6 +30,46 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.15);
     }
 
+    /* ================= ANIMASI GESER ANTAR HALAMAN ================= */
+    .page-view {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+      background: #ffffff;
+    }
+
+    .slide-in-right {
+      display: block !important;
+      animation: slideInRight 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .slide-in-left {
+      display: block !important;
+      animation: slideInLeft 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0.7;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-100%);
+        opacity: 0.7;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
     /* ================= HALAMAN 1: DAFTAR PROYEK ================= */
     #page-home {
       padding: 20px 18px 185px 18px;
@@ -290,6 +330,44 @@
       margin-bottom: 10px;
     }
 
+    /* Footer Visual Sesuai Gambar Terbaru (menu & Setting di bilah merah miring) */
+    .visual-slant-footer {
+      position: relative;
+      width: calc(100% + 28px);
+      margin-left: -14px;
+      margin-top: 24px;
+      height: 120px;
+      background-color: #d90416;
+      transform: rotate(13deg) translateY(20px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px 18px 26px;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.12);
+    }
+    .visual-btn-menu {
+      background: #ffffff;
+      color: #d90416;
+      border: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 22px;
+      padding: 4px 16px;
+      cursor: pointer;
+      box-shadow: 2px 3px 6px rgba(0,0,0,0.2);
+    }
+    .visual-setting-arc {
+      background: #ffffff;
+      color: #d90416;
+      border: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 21px;
+      padding: 10px 26px 14px 26px;
+      border-radius: 50% 50% 0 0;
+      transform: translateY(18px);
+      cursor: pointer;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.12);
+    }
+
     /* ================= POPUP VISUAL (HAPUS & KEMBALI) DENGAN BACKGROUND BLUR ================= */
     .custom-modal-overlay {
       display: none;
@@ -387,10 +465,7 @@
 
     /* ================= HALAMAN 2: SETTING (SWITCH TULIS & KETIK) ================= */
     #page-setting {
-      display: none;
-      padding: 20px 0 40px 0;
-      min-height: 100vh;
-      background: #ffffff;
+      padding: 20px 0 0 0;
     }
 
     .setting-top-bar {
@@ -516,7 +591,7 @@
     .btn-save-setting {
       display: block;
       width: calc(100% - 36px);
-      margin: 10px 18px 0 18px;
+      margin: 10px 18px 24px 18px;
       padding: 12px;
       background-color: #111;
       color: #fff;
@@ -529,10 +604,26 @@
 
     /* ================= HALAMAN 3: FORM NOTA ================= */
     #page-nota {
-      display: none;
-      padding: 16px 14px 32px 14px;
-      min-height: 100vh;
-      background: #ffffff;
+      padding: 16px 14px 24px 14px;
+    }
+
+    .nota-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .btn-home-pill {
+      background-color: #111111;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 4px 14px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
     }
 
     .nota-canvas-wrapper {
@@ -559,7 +650,6 @@
       font-weight: 700;
       padding: 3px 10px;
       border-radius: 12px;
-      margin-bottom: 10px;
       background: #f3f3f3;
       color: #222;
     }
@@ -840,11 +930,11 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 16px;
+      margin-top: 14px;
     }
     .btn-action {
       flex: 1;
-      min-width: 95px;
+      min-width: 85px;
       padding: 10px;
       border: none;
       border-radius: 8px;
@@ -859,7 +949,7 @@
     @media print {
       body { background: #fff; }
       .app-container { box-shadow: none; max-width: 100%; }
-      .action-bar, .nota-mode-badge, .custom-modal-overlay { display: none !important; }
+      .action-bar, .nota-mode-badge, .nota-top-bar, .visual-slant-footer, .custom-modal-overlay { display: none !important; }
       input { border-bottom: none !important; }
     }
   </style>
@@ -869,7 +959,7 @@
   <div class="app-container">
 
     <!-- ================= HALAMAN 1: DAFTAR PROYEK ================= -->
-    <div id="page-home">
+    <div id="page-home" class="page-view" style="display:block;">
       <div class="top-logo">
         <span class="logo-n">N</span><span class="logo-sub">ota</span>
         <span class="logo-h">H</span><span class="logo-sub">onda</span>
@@ -879,9 +969,9 @@
 
       <div class="bottom-nav-wrapper">
         <div class="red-slant-bg"></div>
-        <button class="btn-menu" onclick="bukaHome()">menu</button>
+        <button class="btn-menu" onclick="bukaHome('left')">menu</button>
         <button class="btn-buat" onclick="buatProyekBaru()">buat</button>
-        <div class="btn-setting-circle" onclick="bukaSetting()">
+        <div class="btn-setting-circle" onclick="bukaSetting('right')">
           <span class="btn-setting-text">Setting</span>
         </div>
       </div>
@@ -910,7 +1000,7 @@
     </div>
 
     <!-- ================= HALAMAN 2: SETTING ================= -->
-    <div id="page-setting">
+    <div id="page-setting" class="page-view">
       <div class="setting-top-bar">
         <div class="setting-pill">Setting</div>
         <div class="top-logo" style="margin-bottom:0;">
@@ -941,12 +1031,21 @@
         Mode saat ini: <b>ON untuk ketik</b> (Tulis/coret otomatis OFF). Kamu bisa mengetik isi nota & menghitung otomatis.
       </div>
 
-      <button class="btn-save-setting" onclick="bukaHome()">Simpan & Kembali</button>
+      <button class="btn-save-setting" onclick="bukaHome('left')">Simpan & Kembali</button>
+
+      <!-- Visual Navigasi Bawah -->
+      <div class="visual-slant-footer">
+        <button class="visual-btn-menu" onclick="bukaHome('left')">menu</button>
+        <button class="visual-setting-arc" onclick="bukaSetting('right')">Setting</button>
+      </div>
     </div>
 
     <!-- ================= HALAMAN 3: FORM NOTA ================= -->
-    <div id="page-nota">
-      <div class="nota-mode-badge" id="nota-mode-indicator">Mode: Ketik</div>
+    <div id="page-nota" class="page-view">
+      <div class="nota-top-bar">
+        <div class="nota-mode-badge" id="nota-mode-indicator">Mode: Ketik</div>
+        <button class="btn-home-pill" onclick="bukaHome('left')">home</button>
+      </div>
 
       <div class="nota-canvas-wrapper" id="nota-capture-area">
         <canvas id="write-canvas"></canvas>
@@ -1074,9 +1173,15 @@
       </div>
 
       <div class="action-bar">
-        <button class="btn-action btn-back" onclick="bukaHome()">← Kembali</button>
+        <button class="btn-action btn-back" onclick="bukaHome('left')">← Kembali</button>
         <button class="btn-action btn-clear-draw" id="btn-hapus-coretan" onclick="bersihkanCoretan()" style="display:none;">Hapus Tulisan</button>
         <button class="btn-action btn-print" onclick="cetakNota()">Cetak Nota</button>
+      </div>
+
+      <!-- Visual Navigasi Bawah -->
+      <div class="visual-slant-footer">
+        <button class="visual-btn-menu" onclick="bukaHome('left')">menu</button>
+        <button class="visual-setting-arc" onclick="bukaSetting('right')">Setting</button>
       </div>
     </div>
 
@@ -1094,25 +1199,28 @@
     renderDaftarProyek();
     perbaruiTampilanSwitch();
 
-    function sembunyikanSemuaHalaman() {
-      document.getElementById('page-home').style.display = 'none';
-      document.getElementById('page-setting').style.display = 'none';
-      document.getElementById('page-nota').style.display = 'none';
+    function tampilkanDenganGeser(pageId, arah = 'right') {
+      document.querySelectorAll('.page-view').forEach(p => {
+        p.style.display = 'none';
+        p.classList.remove('slide-in-right', 'slide-in-left');
+      });
+
+      const target = document.getElementById(pageId);
+      void target.offsetWidth; // trigger reflow untuk restart animasi
+      target.classList.add(arah === 'left' ? 'slide-in-left' : 'slide-in-right');
+      window.scrollTo(0, 0);
     }
 
-    function bukaHome() {
+    function bukaHome(arah = 'left') {
       simpanProyekAktif();
       renderDaftarProyek();
-      sembunyikanSemuaHalaman();
-      document.getElementById('page-home').style.display = 'block';
-      window.scrollTo(0, 0);
+      tampilkanDenganGeser('page-home', arah);
     }
 
-    function bukaSetting() {
-      sembunyikanSemuaHalaman();
-      document.getElementById('page-setting').style.display = 'block';
+    function bukaSetting(arah = 'right') {
+      simpanProyekAktif();
+      tampilkanDenganGeser('page-setting', arah);
       perbaruiTampilanSwitch();
-      window.scrollTo(0, 0);
     }
 
     function setMode(modeDipilih) {
@@ -1160,10 +1268,9 @@
 
       proyekList.unshift(baru);
       simpanKeStorage();
-      bukaNotaById(baru.id);
+      bukaNotaById(baru.id, 'right');
     }
 
-    // Modal Hapus Proyek
     function hapusProyek(id, event) {
       event.stopPropagation();
       targetHapusId = id;
@@ -1186,7 +1293,6 @@
       tutupModalHapus();
     }
 
-    // Modal Kembali (muncul saat klik/ketuk 2 kali di mode tulis)
     function bukaModalKembali() {
       document.getElementById('back-modal-overlay').style.display = 'flex';
     }
@@ -1197,7 +1303,7 @@
 
     function konfirmasiKembaliKeHome() {
       tutupModalKembali();
-      bukaHome();
+      bukaHome('left');
     }
 
     function simpanKeStorage() {
@@ -1221,10 +1327,10 @@
         return `
           <div class="project-item">
             <div class="project-header-row">
-              <div class="pill-header" onclick="bukaNotaById('${p.id}')">${escapeHtml(p.judul)}</div>
+              <div class="pill-header" onclick="bukaNotaById('${p.id}', 'right')">${escapeHtml(p.judul)}</div>
               <button class="btn-delete-project" onclick="hapusProyek('${p.id}', event)">Hapus</button>
             </div>
-            <div class="mini-preview" onclick="bukaNotaById('${p.id}')">
+            <div class="mini-preview" onclick="bukaNotaById('${p.id}', 'right')">
               <div class="mini-left">
                 <div class="mini-banner">BENGKEL HONDA</div>
                 <div class="mini-subbanner">Nota Servis</div>
@@ -1255,14 +1361,12 @@
         .replace(/"/g, '&quot;');
     }
 
-    function bukaNotaById(id) {
+    function bukaNotaById(id, arah = 'right') {
       const proyek = proyekList.find(p => p.id === id);
       if (!proyek) return;
 
       proyekAktifId = id;
-      sembunyikanSemuaHalaman();
-      document.getElementById('page-nota').style.display = 'block';
-      window.scrollTo(0, 0);
+      tampilkanDenganGeser('page-nota', arah);
 
       document.getElementById('input-nama').value = proyek.nama || '';
       document.getElementById('input-nopol').value = proyek.nopol || '';
@@ -1312,7 +1416,7 @@
       }
 
       const canvas = document.getElementById('write-canvas');
-      if (canvas) {
+      if (canvas && canvas.width > 0 && canvas.height > 0) {
         proyek.drawingData = canvas.toDataURL();
       }
 
@@ -1362,8 +1466,8 @@
         tempCanvas.getContext('2d').drawImage(canvas, 0, 0);
       }
 
-      canvas.width = wrapper.offsetWidth;
-      canvas.height = wrapper.offsetHeight;
+      canvas.width = wrapper.offsetWidth || 390;
+      canvas.height = wrapper.offsetHeight || 620;
 
       ctx.strokeStyle = '#111111';
       ctx.lineWidth = 2.4;
@@ -1415,7 +1519,6 @@
       if (currentMode !== 'tulis') return;
       e.preventDefault();
 
-      // Deteksi ketuk dua kali (double tap) di layar sentuh HP
       if (e.touches && e.touches.length === 1) {
         const now = Date.now();
         const pos = getPos(e);
@@ -1453,7 +1556,6 @@
       simpanProyekAktif();
     }
 
-    // Event klik dua kali (double click) untuk desktop/mouse di mode tulis
     canvas.addEventListener('dblclick', function(e) {
       if (currentMode === 'tulis') {
         e.preventDefault();
@@ -1477,7 +1579,13 @@
 
     function cetakNota() {
       simpanProyekAktif();
-      window.print();
+      const area = document.getElementById('nota-capture-area');
+      area.classList.remove('slide-in-right', 'slide-in-left');
+      void area.offsetWidth;
+      area.classList.add('slide-in-right');
+      setTimeout(() => {
+        window.print();
+      }, 220);
     }
   </script>
 </body>
