@@ -751,10 +751,10 @@
       cursor: pointer;
     }
 
-    /* ================= HALAMAN 3: FORM NOTA ================= */
+    /* ================= HALAMAN 3: FORM NOTA (SESUAI REFERENSI VISUAL) ================= */
     #page-nota {
       flex-direction: column;
-      padding: 16px 14px 40px 14px;
+      padding: 14px 16px 36px 16px;
     }
 
     .nota-top-bar {
@@ -779,7 +779,7 @@
     .nota-canvas-wrapper {
       position: relative;
       background: #ffffff;
-      padding-bottom: 24px;
+      padding: 12px 6px 18px 6px;
     }
 
     #write-canvas {
@@ -804,96 +804,114 @@
       color: #222;
     }
 
+    /* Header Honda Sesuai Gambar */
     .honda-header-box {
       position: relative;
-      margin-bottom: 12px;
-      padding-top: 8px;
+      margin-bottom: 14px;
+      padding-top: 22px;
     }
 
     .honda-wing {
       position: absolute;
-      top: -12px;
-      left: 2px;
-      width: 125px;
+      top: 0;
+      left: 4px;
+      width: 152px;
       height: auto;
-      z-index: 2;
-      filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.2));
+      z-index: 3;
+      filter: drop-shadow(0 2px 3px rgba(217, 4, 22, 0.35));
     }
 
     .bengkel-bar {
       background-color: #d90416;
-      color: white;
+      color: #ffffff;
       font-family: 'Fredoka', sans-serif;
       font-size: 20px;
-      padding: 7px 14px 7px 115px;
+      font-weight: 700;
+      padding: 8px 14px 8px 118px;
       text-align: center;
-      letter-spacing: 0.5px;
-      box-shadow: 5px 5px 0px #111111;
-      margin-right: 6px;
+      letter-spacing: 0.4px;
+      box-shadow: 7px 7px 0px #000000;
+      margin-left: 16px;
+      margin-right: 12px;
+      position: relative;
+      z-index: 2;
     }
 
     .nota-servis-row {
       display: flex;
       align-items: center;
-      margin-top: 12px;
+      margin-top: 16px;
       gap: 6px;
+      padding-left: 10px;
+      padding-right: 14px;
     }
     .h-badge {
       background: #d90416;
-      color: white;
-      font-weight: 900;
+      color: #ffffff;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
       font-size: 13px;
       padding: 2px 7px;
-      border-radius: 3px;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(217, 4, 22, 0.3);
     }
     .nota-servis-pill {
       flex: 1;
       background-color: #d90416;
-      color: white;
+      color: #ffffff;
       font-family: 'Fredoka', sans-serif;
-      font-size: 16px;
+      font-size: 16.5px;
       text-align: center;
       padding: 4px 12px;
-      border-radius: 20px;
+      border-radius: 14px;
     }
 
+    /* Data Pelanggan Sesuai Gambar */
     .customer-section {
-      margin: 16px 14px;
+      margin: 18px 22px 14px 28px;
     }
     .customer-title {
       font-family: 'Fredoka', sans-serif;
-      font-size: 17px;
+      font-size: 18px;
       color: #d90416;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
     .customer-title span {
-      background-color: #111111;
+      background-color: #000000;
       color: #ffffff;
-      padding: 1px 6px;
+      padding: 1px 7px;
+      display: inline-block;
     }
 
     .form-row {
       display: flex;
       align-items: center;
-      margin-bottom: 6px;
-      font-size: 14px;
-      font-weight: 700;
+      margin-bottom: 5px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14.5px;
     }
-    .form-row label { width: 95px; }
-    .label-black { color: #111; }
+    .form-row label {
+      width: 96px;
+      font-family: 'Fredoka', sans-serif;
+    }
+    .label-black { color: #000000; }
     .label-red { color: #d90416; }
     .form-row span.colon {
       margin-right: 8px;
-      font-weight: 800;
+      font-family: 'Fredoka', sans-serif;
+      color: #000000;
     }
     .form-row input {
       flex: 1;
       border: none;
-      border-bottom: 1.5px dashed #ccc;
+      border-bottom: 1px dashed #d8d8d8;
       font-size: 13px;
       font-weight: 600;
       color: #111;
-      padding: 2px 4px;
+      padding: 1px 4px;
       outline: none;
       background: transparent;
     }
@@ -902,16 +920,16 @@
       background-color: #fff8f8;
     }
 
+    /* Tabel Nota Sesuai Gambar (8 Baris) */
     .nota-table-container {
       background-color: #d90416;
-      padding: 5px;
-      border-radius: 2px;
-      margin-top: 8px;
+      padding: 8px;
+      margin: 8px 6px 0 6px;
     }
 
     .nota-grid {
       display: grid;
-      grid-template-columns: 28px 1fr 38px 65px 68px;
+      grid-template-columns: 30px 1fr 34px 58px 64px;
       gap: 4px;
     }
 
@@ -919,20 +937,20 @@
       background-color: #ffffff;
       color: #d90416;
       font-family: 'Fredoka', sans-serif;
-      font-size: 11px;
+      font-size: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 4px 2px;
-      line-height: 1.05;
-      min-height: 30px;
+      padding: 3px 2px;
+      line-height: 1.02;
+      min-height: 32px;
     }
 
     .left-rows {
       grid-column: 1 / 3;
       display: grid;
-      grid-template-columns: 28px 1fr;
+      grid-template-columns: 30px 1fr;
       gap: 4px;
     }
 
@@ -940,16 +958,16 @@
       background-color: #ffffff;
       color: #d90416;
       font-family: 'Fredoka', sans-serif;
-      font-size: 13px;
+      font-size: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 28px;
+      height: 26px;
     }
 
     .uraian-cell {
       background-color: #ffffff;
-      height: 28px;
+      height: 26px;
       display: flex;
       align-items: center;
     }
@@ -960,10 +978,12 @@
       padding: 0 6px;
       font-size: 12px;
       font-weight: 600;
+      color: #111;
       outline: none;
       background: transparent;
     }
 
+    /* Kotak kanan putih menyatu persis seperti gambar referensi */
     .right-white-box {
       grid-column: 3 / 6;
       background-color: #ffffff;
@@ -974,8 +994,8 @@
 
     .right-input-row {
       display: grid;
-      grid-template-columns: 38px 65px 68px;
-      height: 28px;
+      grid-template-columns: 34px 58px 64px;
+      height: 26px;
       margin-bottom: 4px;
     }
     .right-input-row:last-child { margin-bottom: 0; }
@@ -984,10 +1004,10 @@
       width: 100%;
       height: 100%;
       border: none;
-      border-bottom: 1px dotted #eee;
       text-align: center;
       font-size: 11.5px;
       font-weight: 600;
+      color: #111;
       outline: none;
       padding: 0 2px;
       background: transparent;
@@ -998,32 +1018,37 @@
       padding-right: 4px;
     }
 
+    /* Bagian Sub Total, Diskon & TOTAL di Bawah Tabel */
     .summary-grid {
       display: grid;
-      grid-template-columns: 1.45fr 1fr;
-      gap: 5px;
-      margin-top: 5px;
+      grid-template-columns: 1.48fr 1fr;
+      gap: 6px;
+      margin-top: 6px;
     }
 
     .subtotal-box, .total-box {
       background-color: #ffffff;
-      padding: 6px 8px;
+      padding: 6px 10px;
     }
 
     .sum-line {
       display: flex;
       align-items: center;
-      font-size: 12px;
-      font-weight: 700;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 13px;
       color: #d90416;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
-    .sum-line span.lbl { width: 65px; }
+    .sum-line:last-child { margin-bottom: 0; }
+    .sum-line span.lbl { width: 70px; }
+    .sum-line span.colon-red {
+      margin-right: 6px;
+      color: #d90416;
+    }
     .sum-line input {
       flex: 1;
       width: 100%;
       border: none;
-      border-bottom: 1px dashed #ddd;
       font-size: 12px;
       font-weight: 700;
       color: #111;
@@ -1040,47 +1065,49 @@
     }
     .total-label {
       font-family: 'Fredoka', sans-serif;
-      font-size: 13px;
+      font-size: 13.5px;
       color: #d90416;
     }
     .total-value {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
       color: #111;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
+    /* Tanda Tangan Pelanggan & Kasir Sesuai Gambar */
     .signature-section {
       display: flex;
       justify-content: space-between;
-      margin-top: 62px;
+      margin-top: 72px;
       padding: 0 6px;
-      gap: 20px;
+      gap: 24px;
     }
     .sig-box { flex: 1; text-align: center; }
     .sig-input {
       width: 100%;
       border: none;
-      border-bottom: 1.5px solid #111;
+      border-bottom: 1.5px solid #000000;
       text-align: center;
       font-size: 12px;
       font-weight: 600;
-      padding-bottom: 4px;
+      color: #111;
+      padding-bottom: 3px;
       margin-bottom: 4px;
       outline: none;
       background: transparent;
     }
     .sig-label {
-      font-size: 11px;
-      font-weight: 700;
-      color: #111;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 11.5px;
+      color: #000000;
     }
 
     .action-bar {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 14px;
+      margin-top: 16px;
     }
     .btn-action {
       flex: 1;
@@ -1096,90 +1123,96 @@
     .btn-clear-draw { background-color: #ff9800; color: #fff; }
     .btn-print { background-color: #d90416; color: #fff; }
 
-    /* ================= CETAK / PDF VERTICAL KE BAWAH (9:16) ================= */
+    /* ================= CETAK / SIMPAN PDF: HANYA LEMBAR NOTA SAJA ================= */
     @page {
-      size: portrait;
-      margin: 8mm;
+      size: 108mm 192mm;
+      margin: 0;
     }
 
     @media print {
-      body, .app-container, .page-view, #page-nota {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      html, body {
+        width: 108mm !important;
+        height: 192mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+      }
+
+      /* Sembunyikan seluruh elemen lain di luar area nota */
+      body * {
+        visibility: hidden !important;
+      }
+
+      #nota-capture-area,
+      #nota-capture-area * {
+        visibility: visible !important;
+      }
+
+      /* Sembunyikan coretan jika kosong, tampilkan jika ada tulisan tangan */
+      #write-canvas {
+        visibility: hidden !important;
+      }
+      #write-canvas.has-drawing {
         display: block !important;
-        height: auto !important;
-        min-height: 0 !important;
-        overflow: visible !important;
+        visibility: visible !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .app-container, .page-view, #page-nota {
+        display: block !important;
+        position: static !important;
+        width: 108mm !important;
+        max-width: 108mm !important;
+        height: 192mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
         background: #ffffff !important;
         box-shadow: none !important;
-        position: static !important;
+        overflow: hidden !important;
         animation: none !important;
         transform: none !important;
       }
 
-      .app-container, #page-nota, .nota-canvas-wrapper {
-        width: 90mm !important;
-        max-width: 90mm !important;
-        aspect-ratio: 9 / 16;
-        min-height: 160mm !important;
-        margin: 0 auto !important;
-        padding: 4mm !important;
+      /* Posisikan lembar nota pas memenuhi kertas 108mm x 192mm */
+      #nota-capture-area {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 108mm !important;
+        height: 192mm !important;
+        margin: 0 !important;
+        padding: 6mm 4mm 6mm 4mm !important;
+        background: #ffffff !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        z-index: 99999 !important;
       }
 
+      #page-home,
+      #page-setting,
       .action-bar,
       .nota-mode-badge,
       .nota-top-bar,
       .custom-modal-overlay,
       .bottom-nav-wrapper,
-      #refresh-banner,
-      #write-canvas {
+      #refresh-banner {
         display: none !important;
       }
 
-      /* Susun tabel & bagian nota ke bawah (vertikal), tidak berdampingan */
-      .nota-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 6px !important;
-      }
-
-      .left-rows {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 4px !important;
-      }
-
-      .right-white-box {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 4px !important;
-        margin-top: 6px !important;
-        padding: 4px !important;
-      }
-
-      .right-input-row {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        gap: 6px !important;
-        height: 24px !important;
-        margin-bottom: 0 !important;
-      }
-
-      .summary-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 6px !important;
-        margin-top: 6px !important;
+      .form-row input {
+        border-bottom: none !important;
       }
 
       .signature-section {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
-        margin-top: 24px !important;
-      }
-
-      input {
-        border-bottom: none !important;
+        margin-top: 14mm !important;
       }
     }
   </style>
@@ -1300,152 +1333,138 @@
       <div class="nota-canvas-wrapper" id="nota-capture-area">
         <canvas id="write-canvas"></canvas>
 
-        <div class="honda-header-box">
-          <svg class="honda-wing" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M185 10 C130 22, 65 48, 12 88 L22 96 C75 62, 130 38, 178 26 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
-            <path d="M172 34 C120 46, 65 68, 22 100 L30 107 C78 76, 125 56, 165 46 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
-            <path d="M158 54 C112 64, 65 82, 30 110 L38 117 C78 90, 118 74, 152 65 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
-            <path d="M142 72 C104 80, 68 95, 38 119 L46 125 C80 103, 112 90, 136 83 Z" fill="#ffffff" stroke="#d90416" stroke-width="4"/>
-          </svg>
+        <div>
+          <div class="honda-header-box">
+            <svg class="honda-wing" viewBox="0 0 210 135" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M196 10 C138 22, 68 48, 12 88 L22 96 C78 62, 138 38, 188 26 Z" fill="#ffffff" stroke="#d90416" stroke-width="4.5"/>
+              <path d="M182 34 C128 46, 68 68, 22 100 L31 107 C82 76, 132 56, 174 46 Z" fill="#ffffff" stroke="#d90416" stroke-width="4.5"/>
+              <path d="M166 54 C118 64, 68 82, 31 110 L40 117 C82 90, 124 74, 160 65 Z" fill="#ffffff" stroke="#d90416" stroke-width="4.5"/>
+              <path d="M150 72 C108 80, 70 95, 40 119 L49 125 C85 103, 118 90, 144 83 Z" fill="#ffffff" stroke="#d90416" stroke-width="4.5"/>
+            </svg>
 
-          <div class="bengkel-bar">BENGKEL HONDA</div>
+            <div class="bengkel-bar">BENGKEL HONDA</div>
 
-          <div class="nota-servis-row">
-            <div class="h-badge">H</div>
-            <div class="nota-servis-pill">—— &nbsp; Nota Servis &nbsp; ——</div>
-          </div>
-        </div>
-
-        <div class="customer-section">
-          <div class="customer-title">Data <span>Pelanggan</span></div>
-          <div class="form-row">
-            <label class="label-black">Nama</label>
-            <span class="colon">:</span>
-            <input type="text" id="input-nama" placeholder="Ketik nama pelanggan..." oninput="simpanProyekAktif()">
-          </div>
-          <div class="form-row">
-            <label class="label-red">No. polisi</label>
-            <span class="colon">:</span>
-            <input type="text" id="input-nopol" placeholder="Contoh: Z 1234 AB" oninput="simpanProyekAktif()">
-          </div>
-          <div class="form-row">
-            <label class="label-black">Jenis Motor</label>
-            <span class="colon">:</span>
-            <input type="text" id="input-motor" placeholder="Contoh: Beat / Vario" oninput="simpanProyekAktif()">
-          </div>
-        </div>
-
-        <div class="nota-table-container">
-          <div class="nota-grid">
-            <div class="th-cell">NO</div>
-            <div class="th-cell">Uraian Pekerjaan</div>
-            <div class="th-cell">QTY</div>
-            <div class="th-cell">Harga<br>Satuan</div>
-            <div class="th-cell">Jumlah</div>
-
-            <div class="left-rows">
-              <div class="no-cell">1</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">2</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">3</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">4</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">5</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">6</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">7</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">8</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">9</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-
-              <div class="no-cell">10</div>
-              <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
-            </div>
-
-            <div class="right-white-box" id="calc-rows">
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
-              <div class="right-input-row">
-                <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
-                <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
-                <input type="text" class="jumlah-input" readonly>
-              </div>
+            <div class="nota-servis-row">
+              <div class="h-badge">H</div>
+              <div class="nota-servis-pill">Nota Servis</div>
             </div>
           </div>
 
-          <div class="summary-grid">
-            <div class="subtotal-box">
-              <div class="sum-line">
-                <span class="lbl">Sub Total</span>
-                <span>:</span>
-                <input type="text" id="sub-total" readonly value="0">
+          <div class="customer-section">
+            <div class="customer-title">Data <span>Pelanggan</span></div>
+            <div class="form-row">
+              <label class="label-black">Nama</label>
+              <span class="colon">:</span>
+              <input type="text" id="input-nama" placeholder="Ketik nama pelanggan..." oninput="simpanProyekAktif()">
+            </div>
+            <div class="form-row">
+              <label class="label-red">No. polisi</label>
+              <span class="colon">:</span>
+              <input type="text" id="input-nopol" placeholder="Contoh: Z 1234 AB" oninput="simpanProyekAktif()">
+            </div>
+            <div class="form-row">
+              <label class="label-black">Jenis Motor</label>
+              <span class="colon">:</span>
+              <input type="text" id="input-motor" placeholder="Contoh: Beat / Vario" oninput="simpanProyekAktif()">
+            </div>
+          </div>
+
+          <div class="nota-table-container">
+            <div class="nota-grid">
+              <div class="th-cell">NO</div>
+              <div class="th-cell">Uraian Pekerjaan</div>
+              <div class="th-cell">QTY</div>
+              <div class="th-cell">Harga<br>Satuan</div>
+              <div class="th-cell">Jumlah</div>
+
+              <div class="left-rows">
+                <div class="no-cell">1</div>
+                <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+                <div class="no-cell">2</div>
+                <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+                <div class="no-cell">3</div>
+                <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+                <div class="no-cell">4</div>
+                <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+                <div class="no-cell">5</div>
+                <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+                <div class="no-cell">6</div>
+                <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+                <div class="no-cell">7</div>
+                <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
+
+                <div class="no-cell">8</div>
+                <div class="uraian-cell"><input type="text" class="uraian-input" oninput="simpanProyekAktif()"></div>
               </div>
-              <div class="sum-line">
-                <span class="lbl">Diskon</span>
-                <span>:</span>
-                <input type="number" id="diskon" min="0" oninput="hitungTotal()">
+
+              <div class="right-white-box" id="calc-rows">
+                <div class="right-input-row">
+                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                  <input type="text" class="jumlah-input" readonly>
+                </div>
+                <div class="right-input-row">
+                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                  <input type="text" class="jumlah-input" readonly>
+                </div>
+                <div class="right-input-row">
+                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                  <input type="text" class="jumlah-input" readonly>
+                </div>
+                <div class="right-input-row">
+                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                  <input type="text" class="jumlah-input" readonly>
+                </div>
+                <div class="right-input-row">
+                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                  <input type="text" class="jumlah-input" readonly>
+                </div>
+                <div class="right-input-row">
+                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                  <input type="text" class="jumlah-input" readonly>
+                </div>
+                <div class="right-input-row">
+                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                  <input type="text" class="jumlah-input" readonly>
+                </div>
+                <div class="right-input-row">
+                  <input type="number" class="qty-input" min="0" oninput="hitungTotal()">
+                  <input type="number" class="harga-input" min="0" oninput="hitungTotal()">
+                  <input type="text" class="jumlah-input" readonly>
+                </div>
               </div>
             </div>
 
-            <div class="total-box">
-              <div class="total-label">TOTAL :</div>
-              <div class="total-value" id="grand-total">Rp 0</div>
+            <div class="summary-grid">
+              <div class="subtotal-box">
+                <div class="sum-line">
+                  <span class="lbl">Sub Total</span>
+                  <span class="colon-red">:</span>
+                  <input type="text" id="sub-total" readonly value="0">
+                </div>
+                <div class="sum-line">
+                  <span class="lbl">Diskon</span>
+                  <span class="colon-red">:</span>
+                  <input type="number" id="diskon" min="0" oninput="hitungTotal()">
+                </div>
+              </div>
+
+              <div class="total-box">
+                <div class="total-label">TOTAL :</div>
+                <div class="total-value" id="grand-total">Rp 0</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1474,7 +1493,7 @@
   <script>
     const STORAGE_KEY = 'honda_nota_proyek_v1';
     const MODE_KEY = 'honda_nota_mode_v1';
-    const JUMLAH_BARIS = 10;
+    const JUMLAH_BARIS = 8;
 
     let proyekList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     let proyekAktifId = null;
@@ -1806,6 +1825,23 @@
     let lastTapX = 0;
     let lastTapY = 0;
 
+    function cekCanvasAdaCoretan() {
+      if (!canvas || canvas.width === 0 || canvas.height === 0) return false;
+      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      for (let i = 3; i < pixels.length; i += 4) {
+        if (pixels[i] > 0) return true;
+      }
+      return false;
+    }
+
+    function perbaruiStatusCanvasPrint() {
+      if (cekCanvasAdaCoretan()) {
+        canvas.classList.add('has-drawing');
+      } else {
+        canvas.classList.remove('has-drawing');
+      }
+    }
+
     function setupCanvasSize(savedDataUrl = '') {
       const wrapper = document.getElementById('nota-capture-area');
       const tempCanvas = document.createElement('canvas');
@@ -1816,7 +1852,7 @@
       }
 
       canvas.width = wrapper.offsetWidth || 390;
-      canvas.height = wrapper.offsetHeight || 820;
+      canvas.height = wrapper.offsetHeight || 720;
 
       ctx.strokeStyle = '#111111';
       ctx.lineWidth = 2.4;
@@ -1825,10 +1861,14 @@
 
       if (savedDataUrl) {
         const img = new Image();
-        img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          perbaruiStatusCanvasPrint();
+        };
         img.src = savedDataUrl;
       } else if (tempCanvas.width > 0) {
         ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
+        perbaruiStatusCanvasPrint();
       }
     }
 
@@ -1902,6 +1942,7 @@
       if (!isDrawing) return;
       isDrawing = false;
       ctx.closePath();
+      perbaruiStatusCanvasPrint();
       simpanProyekAktif();
     }
 
@@ -1923,18 +1964,23 @@
 
     function bersihkanCoretan() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      perbaruiStatusCanvasPrint();
       simpanProyekAktif();
     }
 
     function cetakNota() {
       simpanProyekAktif();
-      const area = document.getElementById('nota-capture-area');
-      area.classList.remove('slide-in-right', 'slide-in-left');
-      void area.offsetWidth;
-      area.classList.add('slide-in-right');
+      perbaruiStatusCanvasPrint();
+
+      // Pastikan halaman nota aktif tanpa animasi geser agar hasil cetak lurus & tepat di tengah
+      const pageNota = document.getElementById('page-nota');
+      pageNota.classList.remove('slide-in-right', 'slide-in-left');
+      pageNota.style.display = 'flex';
+      pageNota.scrollTop = 0;
+
       setTimeout(() => {
         window.print();
-      }, 220);
+      }, 100);
     }
   </script>
 </body>
