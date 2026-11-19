@@ -255,7 +255,7 @@
       margin-top: 10px;
     }
 
-    /* Footer Merah Miring */
+    /* Footer Merah Miring (Halaman Home) */
     .bottom-nav-wrapper {
       position: fixed;
       bottom: 0;
@@ -328,44 +328,6 @@
       transform: rotate(10deg);
       margin-right: 10px;
       margin-bottom: 10px;
-    }
-
-    /* Footer Visual Sesuai Gambar Terbaru (menu & Setting di bilah merah miring) */
-    .visual-slant-footer {
-      position: relative;
-      width: calc(100% + 28px);
-      margin-left: -14px;
-      margin-top: 24px;
-      height: 120px;
-      background-color: #d90416;
-      transform: rotate(13deg) translateY(20px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 22px 18px 26px;
-      box-shadow: 0 -3px 10px rgba(0,0,0,0.12);
-    }
-    .visual-btn-menu {
-      background: #ffffff;
-      color: #d90416;
-      border: none;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 22px;
-      padding: 4px 16px;
-      cursor: pointer;
-      box-shadow: 2px 3px 6px rgba(0,0,0,0.2);
-    }
-    .visual-setting-arc {
-      background: #ffffff;
-      color: #d90416;
-      border: none;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 21px;
-      padding: 10px 26px 14px 26px;
-      border-radius: 50% 50% 0 0;
-      transform: translateY(18px);
-      cursor: pointer;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.12);
     }
 
     /* ================= POPUP VISUAL (HAPUS & KEMBALI) DENGAN BACKGROUND BLUR ================= */
@@ -463,9 +425,9 @@
       cursor: pointer;
     }
 
-    /* ================= HALAMAN 2: SETTING (SWITCH TULIS & KETIK) ================= */
+    /* ================= HALAMAN 2: SETTING (BERSIH TANPA FOTO FOOTER) ================= */
     #page-setting {
-      padding: 20px 0 0 0;
+      padding: 20px 0 40px 0;
     }
 
     .setting-top-bar {
@@ -604,7 +566,7 @@
 
     /* ================= HALAMAN 3: FORM NOTA ================= */
     #page-nota {
-      padding: 16px 14px 24px 14px;
+      padding: 16px 14px 32px 14px;
     }
 
     .nota-top-bar {
@@ -949,7 +911,7 @@
     @media print {
       body { background: #fff; }
       .app-container { box-shadow: none; max-width: 100%; }
-      .action-bar, .nota-mode-badge, .nota-top-bar, .visual-slant-footer, .custom-modal-overlay { display: none !important; }
+      .action-bar, .nota-mode-badge, .nota-top-bar, .custom-modal-overlay { display: none !important; }
       input { border-bottom: none !important; }
     }
   </style>
@@ -1032,12 +994,6 @@
       </div>
 
       <button class="btn-save-setting" onclick="bukaHome('left')">Simpan & Kembali</button>
-
-      <!-- Visual Navigasi Bawah -->
-      <div class="visual-slant-footer">
-        <button class="visual-btn-menu" onclick="bukaHome('left')">menu</button>
-        <button class="visual-setting-arc" onclick="bukaSetting('right')">Setting</button>
-      </div>
     </div>
 
     <!-- ================= HALAMAN 3: FORM NOTA ================= -->
@@ -1177,12 +1133,6 @@
         <button class="btn-action btn-clear-draw" id="btn-hapus-coretan" onclick="bersihkanCoretan()" style="display:none;">Hapus Tulisan</button>
         <button class="btn-action btn-print" onclick="cetakNota()">Cetak Nota</button>
       </div>
-
-      <!-- Visual Navigasi Bawah -->
-      <div class="visual-slant-footer">
-        <button class="visual-btn-menu" onclick="bukaHome('left')">menu</button>
-        <button class="visual-setting-arc" onclick="bukaSetting('right')">Setting</button>
-      </div>
     </div>
 
   </div>
@@ -1206,7 +1156,7 @@
       });
 
       const target = document.getElementById(pageId);
-      void target.offsetWidth; // trigger reflow untuk restart animasi
+      void target.offsetWidth;
       target.classList.add(arah === 'left' ? 'slide-in-left' : 'slide-in-right');
       window.scrollTo(0, 0);
     }
